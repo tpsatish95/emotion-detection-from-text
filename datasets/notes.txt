@@ -1,0 +1,356 @@
+The ISEAR not only identifies emotions it also surveyed the users of situations in which they experienced those emotions
+
+Example:
+Anger
+Situation 1
+      During the short period of my unemployment about six years back.
+Situation 2
+      I loved a person and he went away. It wasn't necessary that had to leave me to reach his goals.
+
+These are examples of two situations where the given user experiences anger and apart from this it also provides various factors like When , How long, Symptoms , Intensity ,Other psychological symptoms, etc
+
+These phrases can be used to train our emotions (Not sure if it will work (as they are only situations)) and we need to figure out a way to use the other extra info given in training.
+
+Datsets Used:
+
+1. Phrases dataset (7652 Phrases)
+Emotions - 
+Anger, Fear, Joy, Shame, Disgust, Sadness, Guilt (7 Emotions)
+(We figured out only recently that this is the "Situation" part of the ISEAR dataset discussed above)
+
+2. Word dataset (1542 words)
+Emotions - 
+joy, surprise, anger, disgust, sadness, fear
+
+3. We Feel Fine Dataset (It is a phrase dataset)
+We basically took the words above and fed it to the WE FEEL FINE  API and got 1500 phrases for each word.
+Drawback:
+It returned a sentence like 
+"I am not happy"
+as JOY because it had happy in it !!!
+
+Cheers,
+Team TexEmo
+
+On Fri, Mar 20, 2015 at 8:43 AM, Pulkit Agrawal <pulkitagrawal.mail@gmail.com> wrote:
+As I understand - ISEAR proposes a set of emotions. It doesnot tell you the words that are the correlates of emotions. So this dataset helps in defining emotions but not necessarily in finding emotions - is this correct? 
+Can you upload a list of all datasets we have looked until now along with the kind of labels they have? That would help us decide the appropriate strategy. 
+
+Pulkit 
+
+
+On Tue, Mar 17, 2015 at 5:42 AM, Satish Palaniappan <tpsatish95@gmail.com> wrote:
+The ISEAR dataset has 7 major emotions (joy, fear, anger, sadness, disgust, shame, and guilt).
+This dataset was collected by some phycologists from students who were asked to report situations in which they had experienced each of the 7 emotions.
+They got around 3000 respondents for each emotion from various countries and continents. Thus the final dataset consisted of reports from 3000 ppl for each of 7 emotions.
+
+The report basically has 
+1. Emotion  (joy anger etc)
+2. Situation  (a phrase expressing the emotion ) - describes an event when the emotion was flet by the person
+
+3. When 
+4. How long
+5. Symptoms 
+6. Intensity 
+Other psychological symptoms 
+Etc etc(a long list)
+
+Have attached the dataset description for your reference.(1)
+Also have attached the dataset itlself.(2)
+
+No we are not sure of how to proceed with such a comprehensive dataset, so as of now we have not done anything using the isear dataset.
+
+Cheers,
+Team Texemo.
+
+Can you give me more details of the dataset? And is there anything you have tried with ISEAR phrases yet? 
+
+On Mon, Mar 16, 2015 at 12:44 AM, Satish Palaniappan <tpsatish95@gmail.com> wrote:
+Pulkit we started from scratch as suggested and had only one dataset "the ISEAR emotion phrases"
+It has 7 emotions which have one or two variations from our current decided basic 6 emotions and moreover we only have phrases(about 17k), we are not sure of how to proceed with it as such. Initially we had a word dataset too but those emotional classifications don't match with the phrases.
+
+It would be very helpful if you could guide us on how to proceed with the ISEAR dataset alone in hand for now.Or suggest a different way to tackle this problem.
+
+Cheers, 
+Team Texemo.
+
+On 16 Mar 2015 10:55, "Pulkit Agrawal" <pulkitagrawal.mail@gmail.com> wrote:
+Checking in with you guys - how do things look at the moment? Any luck with improving the performance? If not, are you stuck somewhere in particular? 
+
+On Sat, Feb 21, 2015 at 8:58 PM, Dhruv Goel <dhruv.goel.in@gmail.com> wrote:
+Ekman's model defines categories that are semantically the most distinct, so it makes it a little easier to differentiate between the categories. 
+
+Yeah, we'll try to evaluate our results on one of the databases first and then see how to go ahead. 
+
+On Fri, Feb 20, 2015 at 10:24 AM, Pulkit Agrawal <pulkitagrawal.mail@gmail.com> wrote:
+Through the the psychology study and literature survey we have come up with a few insights. Existing researches have worked on keyword identification, svm and naive baiyes classification, probabilistic model and vector space model. 
+
+We also came up with a conclusion that the categories of emotions suggested by Ekman would be most useful for us. And we have been using the same since the beginning. So we got it right as far as the categories are considered. 
+Why is this? 
+
+On the other hand our text processing includes not just keyword matching, but also taking into account the ambiguities and context as well. Further, instead of working on just one of the techniques we have worked on all the above techniques and have come up with a comparative analysis of a vector space model, probabilistic model and naive bayes and svm classifier. We have also taken into account emotional indicators as in words that express an emotion with higher intensity. 
+
+Comparative analysis is good - but its not a goal in itself. The goal is to get a system which either solves an interesting problem or beats the existing methods on a previously well defined problem.  
+ 
+Few of the researches suggested that if we could detect the cause of the emotion in any phrase, then that could help determine the overall emotion because the effect (the emotion) will be directly related to the cause triggering it. We're not sure if that could be useful but we are trying to explore that. Also, we are still looking at a couple of datasets, namely ISEAR and wordnet affect and see how our system works for these datasets.
+
+I suggest - fix one dataset to start with. Then we can gun down on it.
+ 
+ 
+
+
+ 
+
+On Thu, Feb 19, 2015 at 1:20 PM, Pulkit Agrawal <pulkitagrawal.mail@gmail.com> wrote:
+Pulkit,
+
+We are trying to publish one survey paper that we had attached in the previous mail. Awaiting your reviews on the paper before publication.
+
+What new insight does your survery paper provide? 
+ 
+And we are also writing a working research paper, we will get back to you guys regarding this when we are done.  
+
+We are also on a look out for good publications and conferences to publish our work.
+
+Previously published results were around 56 % and ours is around 48%. Trying to improve our system in the mean time based on our conclusions from the survey.
+
+Are there any concrete ideas you guys are pursuing to improve performance? 
+ 
+Cheers,
+Team TexEmo.
+
+On 19 Feb 2015 10:14, "Pulkit Agrawal" <pulkitagrawal.mail@gmail.com> wrote:
+What are your guys plan as of now? 
+Are our results close to any previously published results? 
+
+On Tue, Feb 17, 2015 at 5:34 AM, Satish Palaniappan <tpsatish95@gmail.com> wrote:
+Hello Everyone,
+
+We have done the psychology study that we were talking about and arrived at a review paper (PFA).
+We have also derived at a set of conclusions from this study and found some new datasets that ppl are using widely (ISEAR and wordnet affect dataset).
+
+We hope to improve our system with this dataset and quite some other techniques that ppl are using currently.
+
+ 
+Cheers,
+Team TexEmo.
+
+On Wed, Jan 28, 2015 at 10:24 AM, Pulkit Agrawal <pulkitagrawal.mail@gmail.com> wrote:
+Sounds good. Keep gunning :) 
+Looking forward to seeing your results! 
+
+
+On Mon, Jan 26, 2015 at 9:32 AM, Satish Palaniappan <tpsatish95@gmail.com> wrote:
+Hello Everyone,
+
+We are sorry that we were not able to respond to all of you in time as everyone of us got engaged in some work, but now we all are working on our project.
+
+As Rita mam requested we had compiled a list of datasets we had used as well as a brief description about them. (PFA)
+
+We have also attached the modified survey paper with changes mentioned by Rita mam.
+
+We are also working on emotion related psychology literature study and the citations list as mentioned by Bhiksha sir and Pulkit .
+
+We are also currently trying out the Bigram based Naive Bayes Classifier, will post updates on it's results soon.
+
+
+Cheers,
+Team Texemo.
+
+On Fri, Jan 9, 2015 at 11:42 AM, Rita Singh <rsingh@cs.cmu.edu> wrote:
+Dear Dhruv (and all),
+
+Fantastic work! I haven't respond to you so far because I (and Bhiksha
+too) are scrambling for proposal deadlines - we have to submit four
+proposals to the National science foundation by Jan 14th, so we can
+get smart students like you :-)
+
+Give a list of databases that can be used for emotion recognition, and
+evaluations of new algorithms like yours. Also, when you put a
+citation list, each citation should be indicated in its appropriate
+place int he text, for example : a recnt study shows that x is not
+effective [2].
+(here [2] would be the paper you are referring to).
+
+More later!
+By the way - can you send me a list of available databases for emotion
+recognition? (top 2 largest or most used ones)
+
+Best
+Rita
+
+On Thu, Jan 8, 2015 at 10:37 AM, Dhruv Goel <dhruv.goel.in@gmail.com> wrote:
+> Hello Everyone,
+>
+> Attached herewith is our review paper. We have studied all the existing
+> research work very thoroughly.
+> Next we will be discussing about the option of crowd-sourcing for preparing
+> our dataset. Along with this, we will be simultaneously working on the
+> implementation part. We will continue to pursue the 3 approaches we had
+> taken earlier and will try to make improvements on it. Depending upon the
+> results, we will keep updating our main research paper.
+>
+> Cheers,
+> Team Texemo
+>
+> On Sat, Jan 3, 2015 at 11:51 AM, satish palaniapan <tpsatish95@gmail.com>
+> wrote:
+>>
+>> Yes we do have access to this blog.
+>> We will put it up within today!
+>>
+>> Cheers,
+>> Team Texemo
+>>
+>> On 3 Jan 2015 11:28, "Pulkit Agrawal" <pulkitagrawal.mail@gmail.com>
+>> wrote:
+>>>
+>>> Sounds good.
+>>>
+>>> There is also an official blog page for project descriptions:
+>>> http://cmuwinterschool.blogspot.com/
+>>> Please include a short description of the project here - and then you can
+>>> give a link to your own blog-page. This way we will have all projects listed
+>>> together.
+>>> Do you have access to this blog? If not, let me know.
+>>>
+>>> Cheers,
+>>> Pulkit
+>>>
+>>>
+>>>
+>>> On Fri, Jan 2, 2015 at 10:17 AM, satish palaniapan <tpsatish95@gmail.com>
+>>> wrote:
+>>>>
+>>>> A very happy new year to you too !
+>>>> We are from team MAP
+>>>> We renamed ourselves "Texemo" !
+>>>> Project: Emotion Detection from Text
+>>>> Members: Satish, Dhruv, Skand
+>>>>
+>>>> We have continued from where we had left our work at the end of the
+>>>> winter school.
+>>>>
+>>>> Now for the updates!
+>>>>
+>>>> a) We don't have website for now but soon will develop one for sure.
+>>>> We will start our work on the website once the report is done.
+>>>>
+>>>> b) Yes we are making a video ETA: Within Jan End
+>>>>
+>>>> c) We have blog
+>>>> The link is
+>>>> http://projecttexemo.wordpress.com/
+>>>> -We are updating the contents on it and an overall report uploaded
+>>>> already and developing further detailed content of our success and failure
+>>>>
+>>>> - We have a logo now and a slogan "Get Emoted...!"
+>>>> Visit our blog to get the visuals
+>>>>
+>>>> d) We are also working on the paper
+>>>> We have performed a literature survey of the work done in the area of
+>>>> text based emotion recognition system. We observed that very limited work
+>>>> has been done in this area and through our work we can present a much more
+>>>> advanced system that not only overcomes the drawbacks of existing systems
+>>>> but also take into account a lot of issues that pose problems in this area.
+>>>> We are writing a review paper too, work is under progress.
+>>>> A gist has been included in the report, on our blog!
+>>>> We will mail you the review report within 2 days.
+>>>>
+>>>> Cheers,
+>>>> Team Texemo
+>>>
+>>>
+>>>
+>>>
+>>> --
+>>> 'Knowledge takes you from A to B, Imagination takes you everywhere'
+>
+>
+>
+>
+> --
+> Regards,
+> Dhruv Goel
+> +91 9740575885
+
+
+
+--
+Rita Singh
+LTI, SCS, Carnegie Mellon University
+5000 Forbes Avenue, Pittsburgh, PA 15213
+http://www.cs.cmu.edu/~rsingh
+
+
+
+-- 
+Satish Palaniappan,
+B.E. Computer Science and Engineering,
+SSNCE, Anna University - Chennai.
+"The stone age didn’t end because they ran out of stones", So be creative and imaginative, that will take you places.
+
+
+
+-- 
+'Knowledge takes you from A to B, Imagination takes you everywhere'
+
+
+
+-- 
+Satish Palaniappan,
+B.E. Computer Science and Engineering,
+SSNCE, Anna University - Chennai.
+"The stone age didn’t end because they ran out of stones", So be creative and imaginative, that will take you places.
+
+
+
+-- 
+'Knowledge takes you from A to B, Imagination takes you everywhere'
+
+
+
+-- 
+'Knowledge takes you from A to B, Imagination takes you everywhere'
+
+
+
+-- 
+Regards,
+Dhruv Goel
++91 9740575885
+
+
+
+-- 
+'Knowledge takes you from A to B, Imagination takes you everywhere'
+
+
+
+-- 
+Regards,
+Dhruv Goel
++91 9740575885
+
+
+
+-- 
+'Knowledge takes you from A to B, Imagination takes you everywhere'
+
+
+
+-- 
+'Knowledge takes you from A to B, Imagination takes you everywhere'
+
+
+
+-- 
+'Knowledge takes you from A to B, Imagination takes you everywhere'
+
+
+
+-- 
+Satish Palaniappan,
+B.E. Computer Science and Engineering,
+SSNCE, Anna University - Chennai.
+"The stone age didn’t end because they ran out of stones", So be creative and imaginative, that will take you places.

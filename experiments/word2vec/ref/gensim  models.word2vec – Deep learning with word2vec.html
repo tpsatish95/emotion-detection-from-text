@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0051)http://radimrehurek.com/gensim/models/word2vec.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./gensim  models.word2vec – Deep learning with word2vec_files/shares.json"></script><script type="text/javascript" src="./gensim  models.word2vec – Deep learning with word2vec_files/counter020.js"></script><script type="text/javascript" src="./gensim  models.word2vec – Deep learning with word2vec_files/menu169.js"></script>
+
+<meta property="description" content="Efficient topic modelling of text semantics in Python.">
+<meta property="og:title" content="gensim: topic modelling for humans">
+<meta property="og:description" content="Efficient topic modelling in Python">
+<title>gensim: models.word2vec – Deep learning with word2vec</title>
+<link rel="stylesheet" href="./gensim  models.word2vec – Deep learning with word2vec_files/style.css" type="text/css">
+<link rel="stylesheet" href="./gensim  models.word2vec – Deep learning with word2vec_files/jquery.qtip.min.css" type="text/css">
+<link rel="stylesheet" href="./gensim  models.word2vec – Deep learning with word2vec_files/anythingslider.css" type="text/css">
+<link rel="stylesheet" href="./gensim  models.word2vec – Deep learning with word2vec_files/pygments.css" type="text/css">
+<link rel="shortcut icon" href="http://radimrehurek.com/gensim/_static/favicon.ico">
+<script type="text/javascript" async="" src="./gensim  models.word2vec – Deep learning with word2vec_files/addthis_widget.js"></script><script type="text/javascript" async="" src="./gensim  models.word2vec – Deep learning with word2vec_files/ga.js"></script><script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-24066335-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+<link rel="stylesheet" type="text/css" href="./gensim  models.word2vec – Deep learning with word2vec_files/widget009.old.css" media="all"><link rel="stylesheet" type="text/css" href="./gensim  models.word2vec – Deep learning with word2vec_files/counter015.css" media="all"></head>
+<body>
+<div id="topwrap">
+<div id="top1">
+<div id="left1">
+<h1 class="h1gensim">
+<img src="./gensim  models.word2vec – Deep learning with word2vec_files/logo-gensim_compact.png" alt="gensim logo" title="Gensim - topic modelling for humans">
+</h1>
+</div>
+<div id="middleright">
+<div id="middle1">
+<div id="gensim"><a href="http://radimrehurek.com/gensim/index.html"><img src="./gensim  models.word2vec – Deep learning with word2vec_files/gensim_compact.png" alt="gensim" title="Gensim home"></a></div>
+<div id="tagline"><img src="./gensim  models.word2vec – Deep learning with word2vec_files/tagline_compact.png" alt="gensim tagline"></div>
+</div>
+<div id="right1">
+<div class="consulting-banner">
+<h3><a href="http://radimrehurek.com/">Get Expert Help</a></h3>
+<p>• machine learning, NLP, data mining</p>
+<p>• custom SW design, development, optimizations</p>
+<p>• tech trainings &amp; IT consulting</p>
+</div>
+</div>
+</div>
+</div>
+<div id="menu">
+<div id="indentation1">
+<ul class="menubuttons">
+<li class="menubutton"><a href="http://radimrehurek.com/gensim/index.html">Home</a></li>
+<li class="menubutton"><a href="http://radimrehurek.com/gensim/tutorial.html">Tutorials</a></li>
+<li class="menubutton"><a href="http://radimrehurek.com/gensim/install.html">Install</a></li>
+<li class="menubutton"><a href="http://radimrehurek.com/gensim/support.html">Support</a></li>
+<li class="menubutton"><a href="http://radimrehurek.com/gensim/apiref.html">API</a></li>
+<li class="menubutton"><a href="http://radimrehurek.com/gensim/about.html">About</a></li>
+</ul>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+<script type="text/javascript">
+  var DOCUMENTATION_OPTIONS = {
+    URL_ROOT: '../',
+    VERSION: '0.10.3',
+    COLLAPSE_INDEX: false,
+    FILE_SUFFIX: '.html',
+    HAS_SOURCE: true
+  };
+  </script>
+<script type="text/javascript" src="./gensim  models.word2vec – Deep learning with word2vec_files/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./gensim  models.word2vec – Deep learning with word2vec_files/jquery.qtip.min.js"></script>
+<script type="text/javascript" src="./gensim  models.word2vec – Deep learning with word2vec_files/jquery-migrate-1.1.1.min.js"></script>
+<script type="text/javascript" src="./gensim  models.word2vec – Deep learning with word2vec_files/jquery.anythingslider.min.js"></script>
+<div class="document">
+<div id="thinbanner">
+<div id="bodythinbanner">
+<span class="h2gensim">models.word2vec – Deep learning with word2vec</span>
+</div>
+</div>
+<div class="obsah">
+<div class="obsahwrapper">
+<div class="section" id="module-gensim.models.word2vec">
+<span id="models-word2vec-deep-learning-with-word2vec"></span><h1><tt class="xref py py-mod docutils literal"><span class="pre">models.word2vec</span></tt> – Deep learning with word2vec<a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#module-gensim.models.word2vec" title="Permalink to this headline">¶</a></h1>
+<p>Deep learning via word2vec’s “skip-gram and CBOW models”, using either
+hierarchical softmax or negative sampling <a class="footnote-reference" href="http://radimrehurek.com/gensim/models/word2vec.html#id4" id="id1">[1]</a> <a class="footnote-reference" href="http://radimrehurek.com/gensim/models/word2vec.html#id5" id="id2">[2]</a>.</p>
+<p>The training algorithms were originally ported from the C package <a class="reference external" href="https://code.google.com/p/word2vec/">https://code.google.com/p/word2vec/</a>
+and extended with additional functionality.</p>
+<p>For a blog tutorial on gensim word2vec, with an interactive web app trained on GoogleNews, visit <a class="reference external" href="http://radimrehurek.com/2014/02/word2vec-tutorial/">http://radimrehurek.com/2014/02/word2vec-tutorial/</a></p>
+<p><strong>Make sure you have a C compiler before installing gensim, to use optimized (compiled) word2vec training</strong>
+(70x speedup compared to plain NumPy implemenation <a class="footnote-reference" href="http://radimrehurek.com/gensim/models/word2vec.html#id6" id="id3">[3]</a>).</p>
+<p>Initialize a model with e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Persist a model to disk with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>  <span class="c"># you can continue training with the loaded model!</span>
+</pre></div>
+</div>
+<p>The model can also be instantiated from an existing file on disk in the word2vec C format:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="s">'/tmp/vectors.txt'</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>  <span class="c"># C text format</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="s">'/tmp/vectors.bin'</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c"># C binary format</span>
+</pre></div>
+</div>
+<p>You can perform various syntactic/semantic NLP word tasks with the model. Some of them
+are already built-in:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s">'woman'</span><span class="p">,</span> <span class="s">'king'</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s">'man'</span><span class="p">])</span>
+<span class="go">[('queen', 0.50882536), ...]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">doesnt_match</span><span class="p">(</span><span class="s">"breakfast cereal dinner lunch"</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="go">'cereal'</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="s">'woman'</span><span class="p">,</span> <span class="s">'man'</span><span class="p">)</span>
+<span class="go">0.73723527</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="p">[</span><span class="s">'computer'</span><span class="p">]</span>  <span class="c"># raw numpy vector of a word</span>
+<span class="go">array([-0.00449447, -0.00310097,  0.02421786, ...], dtype=float32)</span>
+</pre></div>
+</div>
+<p>and so on.</p>
+<p>If you’re finished training a model (=no more updates, only querying), you can do</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">init_sims</span><span class="p">(</span><span class="n">replace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to trim unneeded model memory = use (much) less RAM.</p>
+<p>Note that there is a <a class="reference internal" href="http://radimrehurek.com/gensim/models/phrases.html#module-gensim.models.phrases" title="gensim.models.phrases: Phrase (collocation) detection"><tt class="xref py py-mod docutils literal"><span class="pre">gensim.models.phrases</span></tt></a> module which lets you automatically
+detect phrases longer than one word. Using phrases, you can learn a word2vec model
+where “words” are actually multiword expressions, such as <cite>new_york_times</cite> or <cite>financial_crisis</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">bigram_transformer</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Phrases</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">bigram_transformed</span><span class="p">[</span><span class="n">sentences</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="http://radimrehurek.com/gensim/models/word2vec.html#id1">[1]</a></td><td>Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean. Efficient Estimation of Word Representations in Vector Space. In Proceedings of Workshop at ICLR, 2013.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="http://radimrehurek.com/gensim/models/word2vec.html#id2">[2]</a></td><td>Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, and Jeffrey Dean. Distributed Representations of Words and Phrases and their Compositionality.
+In Proceedings of NIPS, 2013.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="http://radimrehurek.com/gensim/models/word2vec.html#id3">[3]</a></td><td>Optimizing word2vec in gensim, <a class="reference external" href="http://radimrehurek.com/2013/09/word2vec-in-python-part-two-optimizing/">http://radimrehurek.com/2013/09/word2vec-in-python-part-two-optimizing/</a></td></tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="gensim.models.word2vec.BrownCorpus">
+<em class="property">class </em><tt class="descclassname">gensim.models.word2vec.</tt><tt class="descname">BrownCorpus</tt><big>(</big><em>dirname</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.BrownCorpus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Iterate over sentences from the Brown corpus (part of NLTK data).</p>
+</dd></dl>
+<dl class="class">
+<dt id="gensim.models.word2vec.LineSentence">
+<em class="property">class </em><tt class="descclassname">gensim.models.word2vec.</tt><tt class="descname">LineSentence</tt><big>(</big><em>source</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.LineSentence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Simple format: one sentence = one line; words already preprocessed and separated by whitespace.</p>
+<p><cite>source</cite> can be either a string or a file object.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sentences</span> <span class="o">=</span> <span class="n">LineSentence</span><span class="p">(</span><span class="s">'myfile.txt'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or for compressed files:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sentences</span> <span class="o">=</span> <span class="n">LineSentence</span><span class="p">(</span><span class="s">'compressed_text.txt.bz2'</span><span class="p">)</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">LineSentence</span><span class="p">(</span><span class="s">'compressed_text.txt.gz'</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="class">
+<dt id="gensim.models.word2vec.Text8Corpus">
+<em class="property">class </em><tt class="descclassname">gensim.models.word2vec.</tt><tt class="descname">Text8Corpus</tt><big>(</big><em>fname</em>, <em>max_sentence_length=1000</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Text8Corpus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Iterate over sentences from the “text8” corpus, unzipped from <a class="reference external" href="http://mattmahoney.net/dc/text8.zip">http://mattmahoney.net/dc/text8.zip</a> .</p>
+</dd></dl>
+<dl class="class">
+<dt id="gensim.models.word2vec.Vocab">
+<em class="property">class </em><tt class="descclassname">gensim.models.word2vec.</tt><tt class="descname">Vocab</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Vocab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>A single vocabulary item, used internally for constructing binary trees (incl. both word leaves and inner nodes).</p>
+</dd></dl>
+<dl class="class">
+<dt id="gensim.models.word2vec.Word2Vec">
+<em class="property">class </em><tt class="descclassname">gensim.models.word2vec.</tt><tt class="descname">Word2Vec</tt><big>(</big><em>sentences=None</em>, <em>size=100</em>, <em>alpha=0.025</em>, <em>window=5</em>, <em>min_count=5</em>, <em>sample=0</em>, <em>seed=1</em>, <em>workers=1</em>, <em>min_alpha=0.0001</em>, <em>sg=1</em>, <em>hs=1</em>, <em>negative=0</em>, <em>cbow_mean=0</em>, <em>hashfxn=&lt;built-in function hash&gt;</em>, <em>iter=1</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="http://radimrehurek.com/gensim/utils.html#gensim.utils.SaveLoad" title="gensim.utils.SaveLoad"><tt class="xref py py-class docutils literal"><span class="pre">gensim.utils.SaveLoad</span></tt></a></p>
+<p>Class for training, using and evaluating neural networks described in <a class="reference external" href="https://code.google.com/p/word2vec/">https://code.google.com/p/word2vec/</a></p>
+<p>The model can be stored/loaded via its <cite>save()</cite> and <cite>load()</cite> methods, or stored/loaded in a format
+compatible with the original word2vec implementation via <cite>save_word2vec_format()</cite> and <cite>load_word2vec_format()</cite>.</p>
+<p>Initialize the model from an iterable of <cite>sentences</cite>. Each sentence is a
+list of words (unicode strings) that will be used for training.</p>
+<p>The <cite>sentences</cite> iterable can be simply a list, but for larger corpora,
+consider an iterable that streams the sentences directly from disk/network.
+See <a class="reference internal" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.BrownCorpus" title="gensim.models.word2vec.BrownCorpus"><tt class="xref py py-class docutils literal"><span class="pre">BrownCorpus</span></tt></a>, <a class="reference internal" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Text8Corpus" title="gensim.models.word2vec.Text8Corpus"><tt class="xref py py-class docutils literal"><span class="pre">Text8Corpus</span></tt></a> or <a class="reference internal" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.LineSentence" title="gensim.models.word2vec.LineSentence"><tt class="xref py py-class docutils literal"><span class="pre">LineSentence</span></tt></a> in
+this module for such examples.</p>
+<p>If you don’t supply <cite>sentences</cite>, the model is left uninitialized – use if
+you plan to initialize it in some other way.</p>
+<p><cite>sg</cite> defines the training algorithm. By default (<cite>sg=1</cite>), skip-gram is used. Otherwise, <cite>cbow</cite> is employed.</p>
+<p><cite>size</cite> is the dimensionality of the feature vectors.</p>
+<p><cite>window</cite> is the maximum distance between the current and predicted word within a sentence.</p>
+<p><cite>alpha</cite> is the initial learning rate (will linearly drop to zero as training progresses).</p>
+<p><cite>seed</cite> = for the random number generator. Initial vectors for each
+word are seeded with a hash of the concatenation of word + str(seed).</p>
+<p><cite>min_count</cite> = ignore all words with total frequency lower than this.</p>
+<dl class="docutils">
+<dt><cite>sample</cite> = threshold for configuring which higher-frequency words are randomly downsampled;</dt>
+<dd>default is 0 (off), useful value is 1e-5.</dd>
+</dl>
+<p><cite>workers</cite> = use this many worker threads to train the model (=faster training with multicore machines).</p>
+<p><cite>hs</cite> = if 1 (default), hierarchical sampling will be used for model training (else set to 0).</p>
+<p><cite>negative</cite> = if &gt; 0, negative sampling will be used, the int for negative
+specifies how many “noise words” should be drawn (usually between 5-20).</p>
+<p><cite>cbow_mean</cite> = if 0 (default), use the sum of the context word vectors. If 1, use the mean.
+Only applies when cbow is used.</p>
+<p><cite>hashfxn</cite> = hash function to use to randomly initialize weights, for increased
+training reproducibility. Default is Python’s rudimentary built in hash function.</p>
+<p><cite>iter</cite> = number of iterations (epochs) over the corpus.</p>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.accuracy">
+<tt class="descname">accuracy</tt><big>(</big><em>questions</em>, <em>restrict_vocab=30000</em>, <em>most_similar=&lt;function most_similar at 0x1152fded8&gt;</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute accuracy of the model. <cite>questions</cite> is a filename where lines are
+4-tuples of words, split into sections by ”: SECTION NAME” lines.
+See <a class="reference external" href="https://code.google.com/p/word2vec/source/browse/trunk/questions-words.txt">https://code.google.com/p/word2vec/source/browse/trunk/questions-words.txt</a> for an example.</p>
+<p>The accuracy is reported (=printed to log and returned as a list) for each
+section separately, plus there’s one aggregate summary at the end.</p>
+<p>Use <cite>restrict_vocab</cite> to ignore all questions containing a word whose frequency
+is not in the top-N most frequent words (default top 30,000).</p>
+<p>This method corresponds to the <cite>compute-accuracy</cite> script of the original C word2vec.</p>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.build_vocab">
+<tt class="descname">build_vocab</tt><big>(</big><em>sentences</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.build_vocab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build vocabulary from a sequence of sentences (can be a once-only generator stream).
+Each sentence must be a list of unicode strings.</p>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.create_binary_tree">
+<tt class="descname">create_binary_tree</tt><big>(</big><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.create_binary_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a binary Huffman tree using stored vocabulary word counts. Frequent words
+will have shorter binary codes. Called internally from <cite>build_vocab()</cite>.</p>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.doesnt_match">
+<tt class="descname">doesnt_match</tt><big>(</big><em>words</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.doesnt_match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which word from the given list doesn’t go with the others?</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">trained_model</span><span class="o">.</span><span class="n">doesnt_match</span><span class="p">(</span><span class="s">"breakfast cereal dinner lunch"</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<span class="go">'cereal'</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.init_sims">
+<tt class="descname">init_sims</tt><big>(</big><em>replace=False</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.init_sims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Precompute L2-normalized vectors.</p>
+<p>If <cite>replace</cite> is set, forget the original vectors and only keep the normalized
+ones = saves lots of memory!</p>
+<p>Note that you <strong>cannot continue training</strong> after doing a replace. The model becomes
+effectively read-only = you can call <cite>most_similar</cite>, <cite>similarity</cite> etc., but not <cite>train</cite>.</p>
+</dd></dl>
+<dl class="classmethod">
+<dt id="gensim.models.word2vec.Word2Vec.load">
+<em class="property">classmethod </em><tt class="descname">load</tt><big>(</big><em>fname</em>, <em>mmap=None</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a previously saved object from file (also see <cite>save</cite>).</p>
+<p>If the object was saved with large arrays stored separately, you can load
+these arrays via mmap (shared memory) using <cite>mmap=’r’</cite>. Default: don’t use
+mmap, load large arrays as normal objects.</p>
+</dd></dl>
+<dl class="classmethod">
+<dt id="gensim.models.word2vec.Word2Vec.load_word2vec_format">
+<em class="property">classmethod </em><tt class="descname">load_word2vec_format</tt><big>(</big><em>fname</em>, <em>fvocab=None</em>, <em>binary=False</em>, <em>norm_only=True</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.load_word2vec_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the input-hidden weight matrix from the original C word2vec-tool format.</p>
+<p>Note that the information stored in the file is incomplete (the binary tree is missing),
+so while you can query for word similarity etc., you cannot continue training
+with a model loaded this way.</p>
+<p><cite>binary</cite> is a boolean indicating whether the data is in binary word2vec format.
+<cite>norm_only</cite> is a boolean indicating whether to only store normalised word2vec vectors in memory.
+Word counts are read from <cite>fvocab</cite> filename, if set (this is the file generated
+by <cite>-save-vocab</cite> flag of the original C tool).</p>
+</dd></dl>
+<dl class="staticmethod">
+<dt id="gensim.models.word2vec.Word2Vec.log_accuracy">
+<em class="property">static </em><tt class="descname">log_accuracy</tt><big>(</big><em>section</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.log_accuracy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.make_table">
+<tt class="descname">make_table</tt><big>(</big><em>table_size=100000000</em>, <em>power=0.75</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.make_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a table using stored vocabulary word counts for drawing random words in the negative
+sampling training routines.</p>
+<p>Called internally from <cite>build_vocab()</cite>.</p>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.most_similar">
+<tt class="descname">most_similar</tt><big>(</big><em>positive=[]</em>, <em>negative=[]</em>, <em>topn=10</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.most_similar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the top-N most similar words. Positive words contribute positively towards the
+similarity, negative words negatively.</p>
+<p>This method computes cosine similarity between a simple mean of the projection
+weight vectors of the given words, and corresponds to the <cite>word-analogy</cite> and
+<cite>distance</cite> scripts in the original word2vec implementation.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">trained_model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s">'woman'</span><span class="p">,</span> <span class="s">'king'</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s">'man'</span><span class="p">])</span>
+<span class="go">[('queen', 0.50882536), ...]</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.most_similar_cosmul">
+<tt class="descname">most_similar_cosmul</tt><big>(</big><em>positive=[]</em>, <em>negative=[]</em>, <em>topn=10</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.most_similar_cosmul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the top-N most similar words, using the multiplicative combination objective
+proposed by Omer Levy and Yoav Goldberg in <a class="footnote-reference" href="http://radimrehurek.com/gensim/models/word2vec.html#id8" id="id7">[4]</a>. Positive words still contribute
+positively towards the similarity, negative words negatively, but with less
+susceptibility to one large distance dominating the calculation.</p>
+<p>In the common analogy-solving case, of two positive and one negative examples,
+this method is equivalent to the “3CosMul” objective (equation (4)) of Levy and Goldberg.</p>
+<p>Additional positive or negative examples contribute to the numerator or denominator,
+respectively – a potentially sensible but untested extension of the method. (With
+a single positive example, rankings will be the same as in the default most_similar.)</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">trained_model</span><span class="o">.</span><span class="n">most_similar_cosmul</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s">'baghdad'</span><span class="p">,</span><span class="s">'england'</span><span class="p">],</span><span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s">'london'</span><span class="p">])</span>
+<span class="go">[(u'iraq', 0.8488819003105164), ...]</span>
+</pre></div>
+</div>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label"><col></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="http://radimrehurek.com/gensim/models/word2vec.html#id7">[4]</a></td><td>Omer Levy and Yoav Goldberg. Linguistic Regularities in Sparse and Explicit Word Representations, 2014.</td></tr>
+</tbody>
+</table>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.n_similarity">
+<tt class="descname">n_similarity</tt><big>(</big><em>ws1</em>, <em>ws2</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.n_similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute cosine similarity between two sets of words.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">trained_model</span><span class="o">.</span><span class="n">n_similarity</span><span class="p">([</span><span class="s">'sushi'</span><span class="p">,</span> <span class="s">'shop'</span><span class="p">],</span> <span class="p">[</span><span class="s">'japanese'</span><span class="p">,</span> <span class="s">'restaurant'</span><span class="p">])</span>
+<span class="go">0.61540466561049689</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trained_model</span><span class="o">.</span><span class="n">n_similarity</span><span class="p">([</span><span class="s">'restaurant'</span><span class="p">,</span> <span class="s">'japanese'</span><span class="p">],</span> <span class="p">[</span><span class="s">'japanese'</span><span class="p">,</span> <span class="s">'restaurant'</span><span class="p">])</span>
+<span class="go">1.0000000000000004</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trained_model</span><span class="o">.</span><span class="n">n_similarity</span><span class="p">([</span><span class="s">'sushi'</span><span class="p">],</span> <span class="p">[</span><span class="s">'restaurant'</span><span class="p">])</span> <span class="o">==</span> <span class="n">trained_model</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="s">'sushi'</span><span class="p">,</span> <span class="s">'restaurant'</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.precalc_sampling">
+<tt class="descname">precalc_sampling</tt><big>(</big><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.precalc_sampling" title="Permalink to this definition">¶</a></dt>
+<dd><p>Precalculate each vocabulary item’s threshold for sampling</p>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.reset_weights">
+<tt class="descname">reset_weights</tt><big>(</big><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.reset_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset all projection weights to an initial (untrained) state, but keep the existing vocabulary.</p>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.save">
+<tt class="descname">save</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the object to file (also see <cite>load</cite>).</p>
+<p>If <cite>separately</cite> is None, automatically detect large numpy/scipy.sparse arrays
+in the object being stored, and store them into separate files. This avoids
+pickle memory errors and allows mmap’ing large arrays back on load efficiently.</p>
+<p>You can also set <cite>separately</cite> manually, in which case it must be a list of attribute
+names to be stored in separate files. The automatic check is not performed in this case.</p>
+<p><cite>ignore</cite> is a set of attribute names to <em>not</em> serialize (file handles, caches etc). On
+subsequent load() these attributes will be set to None.</p>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.save_word2vec_format">
+<tt class="descname">save_word2vec_format</tt><big>(</big><em>fname</em>, <em>fvocab=None</em>, <em>binary=False</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.save_word2vec_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store the input-hidden weight matrix in the same format used by the original
+C word2vec-tool, for compatibility.</p>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.similarity">
+<tt class="descname">similarity</tt><big>(</big><em>w1</em>, <em>w2</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute cosine similarity between two words.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">trained_model</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="s">'woman'</span><span class="p">,</span> <span class="s">'man'</span><span class="p">)</span>
+<span class="go">0.73723527</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trained_model</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="s">'woman'</span><span class="p">,</span> <span class="s">'woman'</span><span class="p">)</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="method">
+<dt id="gensim.models.word2vec.Word2Vec.train">
+<tt class="descname">train</tt><big>(</big><em>sentences</em>, <em>total_words=None</em>, <em>word_count=0</em>, <em>chunksize=100</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.Word2Vec.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the model’s neural weights from a sequence of sentences (can be a once-only generator stream).
+Each sentence must be a list of unicode strings.</p>
+</dd></dl>
+</dd></dl>
+<dl class="function">
+<dt id="gensim.models.word2vec.train_cbow_pair">
+<tt class="descclassname">gensim.models.word2vec.</tt><tt class="descname">train_cbow_pair</tt><big>(</big><em>model</em>, <em>word</em>, <em>word2_indices</em>, <em>l1</em>, <em>alpha</em>, <em>labels</em>, <em>train_w1=True</em>, <em>train_w2=True</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.train_cbow_pair" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="function">
+<dt id="gensim.models.word2vec.train_sg_pair">
+<tt class="descclassname">gensim.models.word2vec.</tt><tt class="descname">train_sg_pair</tt><big>(</big><em>model</em>, <em>word</em>, <em>word2</em>, <em>alpha</em>, <em>labels</em>, <em>train_w1=True</em>, <em>train_w2=True</em><big>)</big><a class="headerlink" href="http://radimrehurek.com/gensim/models/word2vec.html#gensim.models.word2vec.train_sg_pair" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+<div id="footer">
+<div id="footerwrapper">
+<div id="footerleft">
+<img src="./gensim  models.word2vec – Deep learning with word2vec_files/logo-gensim.png" class="smallerlogo" alt="smaller gensim logo">
+<a href="http://radimrehurek.com/gensim/index.html"><img src="./gensim  models.word2vec – Deep learning with word2vec_files/gensim-footer.png" alt="gensim footer image" title="Gensim home"></a>
+<div class="copyright">
+© Copyright 2009-now, <a href="mailto:radimrehurek@seznam.cz" style="color:white"> Radim Řehůřek</a>
+<br>
+Last updated on Nov 17, 2014.
+</div>
+</div>
+<div id="footermiddleright">
+<div id="footermiddle">
+<ul class="navigation">
+<li><a href="http://radimrehurek.com/gensim/index.html">
+Home
+</a></li>
+<li>|</li>
+<li><a href="http://radimrehurek.com/gensim/tutorial.html">
+Tutorials
+</a></li>
+<li>|</li>
+<li><a href="http://radimrehurek.com/gensim/install.html">
+Install
+</a></li>
+<li>|</li>
+<li><a href="http://radimrehurek.com/gensim/support.html">
+Support
+</a></li>
+<li>|</li>
+<li><a href="http://radimrehurek.com/gensim/apiref.html">
+API
+</a></li>
+<li>|</li>
+<li><a href="http://radimrehurek.com/gensim/about.html">
+About
+</a></li>
+</ul>
+<div class="tweetodsazeni">
+<div class="tweet">
+<a href="https://twitter.com/radimrehurek" target="_blank" style="color: white">Tweet @RadimRehurek</a>
+</div>
+</div>
+</div>
+<div id="footerright">
+<div class="footernadpis">
+Support:
+</div>
+<div class="googlegroupsodsazeni">
+<a href="https://groups.google.com/group/gensim" class="googlegroups">
+Stay informed via gensim mailing list:
+</a>
+<form action="http://groups.google.com/group/gensim/boxsubscribe">
+<input type="text" name="email" placeholder="your@email.com" size="28">
+<input type="submit" name="sub" value="Subscribe">
+</form>
+</div>
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:title="#gensim" addthis:description="Efficient Topic Modelling in Python" style="margin:20px 0 0 0">
+<a class="addthis_button_tumblr addthis_button_preferred_1 at300b" target="_blank" title="Tumblr" href="http://radimrehurek.com/gensim/models/word2vec.html#"><span class=" at300bs at15nc at15t_tumblr"><span class="at_a11y">Share on tumblr</span></span></a>
+<a class="addthis_button_facebook addthis_button_preferred_2 at300b" title="Facebook" href="http://radimrehurek.com/gensim/models/word2vec.html#"><span class=" at300bs at15nc at15t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+<a class="addthis_button_twitter addthis_button_preferred_3 at300b" title="Tweet" href="http://radimrehurek.com/gensim/models/word2vec.html#"><span class=" at300bs at15nc at15t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+<a class="addthis_button_email addthis_button_preferred_4 at300b" target="_blank" title="Email" href="http://radimrehurek.com/gensim/models/word2vec.html#"><span class=" at300bs at15nc at15t_email"><span class="at_a11y">Share on email</span></span></a>
+<a class="addthis_button_compact at300m" href="http://radimrehurek.com/gensim/models/word2vec.html#"><span class=" at300bs at15nc at15t_compact"><span class="at_a11y">More Sharing Services</span></span></a>
+<a class="addthis_counter addthis_bubble_style" href="http://radimrehurek.com/gensim/models/word2vec.html#" style="display: inline-block;"><a class="addthis_button_expanded" target="_blank" title="View more services" href="http://radimrehurek.com/gensim/models/word2vec.html#">5</a><a class="atc_s addthis_button_compact"><span></span></a></a>
+<div class="atclear"></div></div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+      (function() {
+      var at = document.createElement('script'); at.type = 'text/javascript'; at.async = true;
+      at.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 's7.addthis.com/js/250/addthis_widget.js#pubid=ra-4d738b9b1d31ccbd';
+      var sat = document.getElementsByTagName('script')[0]; sat.parentNode.insertBefore(at, sat);
+      })();
+    </script>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&a.indexOf("/cdn-cgi/l/email-protection") > -1  && (a.length > 28)){s='';j=27+ 1 + a.indexOf("/cdn-cgi/l/email-protection");if (a.length > j) {r=parseInt(a.substr(j,2),16);for(j+=2;a.length>j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);}t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();
+/* ]]> */
+</script>
+
+<div id="_atssh" style="visibility: hidden;"><iframe id="_atssh782" title="AddThis utility frame" height="1px" width="1px" style="border: 0px; left: 0px; top: 0px;" src="./gensim  models.word2vec – Deep learning with word2vec_files/sh183.html"></iframe></div><script type="text/javascript" src="./gensim  models.word2vec – Deep learning with word2vec_files/core176.js"></script></body></html>

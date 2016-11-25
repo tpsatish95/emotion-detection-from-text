@@ -1,0 +1,35 @@
+(Note: By default the dataset by itself was biased. (with very less surprise samples))
+
+#	Split by Wenbo et al.	#
+Out of the 2,488,982 tweets 
+	250,000 tweets as Test dataset Te
+	247,798 tweets as Development dataset
+	1,991,184 tweets for Training. 
+
+Of the 1,991,184 tweets for Training;
+joy 	  706,182  
+sadness   616,471  
+anger 	  574,170  
+love 	  301,759 
+fear 	  135,154  
+surprise  23,906    
+
+#	Our plit up	#
+(Note: The original test / train split was kept consistent, just the numbers reduced; Of 2.5M we took 450,000)
+Out of 450,000 tweets
+	Before Pre-Processing,
+		Train Data – 318327
+		Test Data – 140287
+	After Pre-Processing
+		Train Data – 313936
+		Test Data – 138174
+
+Of the 318,000 for Training; 
+joy - 69302
+anger - 65721
+sadness - 67808
+surprise - 13364
+love - 68398
+fear - 67531
+
+

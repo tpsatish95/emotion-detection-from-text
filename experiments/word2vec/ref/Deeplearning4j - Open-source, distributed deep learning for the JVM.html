@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://deeplearning4j.org/word2vec.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="description" content="Open-Source Deep-Learning Software">
+  <meta name="author" content="Chris Nicholson, Adam Gibson">
+
+  <title>
+    
+      Deeplearning4j - Open-source, distributed deep learning for the JVM
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="http://deeplearning4j.org/public/css/poole.css">
+  <link rel="stylesheet" href="http://deeplearning4j.org/public/css/syntax.css">
+  
+  <link rel="stylesheet" type="text/css" media="all" href="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" media="all" href="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" media="all" href="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/global.css">
+
+  <script type="text/javascript" async="" src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/linkid.js"></script><script async="" src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/analytics.js"></script><script type="text/javascript" src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/jquery.min.js"></script>
+  <script type="text/javascript" language="javascript" charset="utf-8" src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/gist-embed.min.js"></script>
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://deeplearning4j.org/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="http://deeplearning4j.org/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://deeplearning4j.org/atom.xml">
+  
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48811288-1', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+  ga('require', 'displayfeatures');
+
+</script>
+</head>
+
+  
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <h1>DL4J</h1>
+        <h2>Deep Learning for Java</h2>
+      </div>
+      <div id="menu">
+        <ul>
+          <li><a href="http://deeplearning4j.org/">Home</a></li>
+          <li><a href="http://deeplearning4j.org/gettingstarted.html">Get Started</a></li>
+          <li><a href="http://deeplearning4j.org/documentation.html">Site Map</a></li>
+          <li><a href="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/Deeplearning4j - Open-source, distributed deep learning for the JVM.html">Word2Vec</a></li>
+          <li><a href="http://deeplearning4j.org/download.html">Downloads</a></li>
+          <li><a href="http://deeplearning4j.org/quickstart.html">Quickstart</a></li>
+          <li><a href="http://deeplearning4j.org/about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container content">
+
+
+      <h1 id="word2vec">Word2Vec</h1>
+
+<p>Contents</p>
+
+<ul>
+  <li><a href="http://deeplearning4j.org/word2vec.html#intro">Introduction</a></li>
+  <li><a href="http://deeplearning4j.org/word2vec.html#anatomy">Anatomy of Word2Vec</a></li>
+  <li><a href="http://deeplearning4j.org/word2vec.html#code">Training</a></li>
+  <li><a href="http://deeplearning4j.org/word2vec.html#windows">Moving Windows</a></li>
+  <li><a href="http://deeplearning4j.org/word2vec.html#grams">N-grams &amp; Skip-grams</a></li>
+  <li><a href="http://deeplearning4j.org/word2vec.html#load">Loading Your Data</a></li>
+  <li><a href="http://deeplearning4j.org/word2vec.html#trouble">Troubleshooting &amp; Tuning Word2Vec</a></li>
+  <li><a href="http://deeplearning4j.org/word2vec.html#dbn">Fine-tuning DBNs (with code!)</a></li>
+  <li><a href="http://deeplearning4j.org/word2vec.html#next">Next Steps</a></li>
+</ul>
+
+<h3 id="a-nameintrointroduction-to-word2veca"><a name="intro">Introduction to Word2Vec</a></h3>
+
+<p><a href="http://deeplearning4j.org/quickstart.html">Deeplearning4j</a> implements a distributed form of Word2vec for Java, which works with GPUs. Word2vec was originally conceived by a research team at Google led by Tomas Mikolov. </p>
+
+<p>Word2vec is a neural net that processes text before that text is handled by deep-learning algorithms. While it does not implement deep learning, Word2vec turns text into a numerical form that deep-learning nets can understand – the vector. </p>
+
+<p>Word2vec creates features without human intervention, including the context of individual words. That context comes in the form of multiword windows. Given enough data, usage and context, Word2vec can make highly accurate guesses about a word’s meaning (for the purpose of deep learning, a word’s meaning is simply a signal that helps to classify larger entities; e.g. placing a document in a cluster) based on its past appearances. </p>
+
+<p>Word2vec expects a string of sentences as its input. Each sentence – that is, each array of words – is vectorized and  compared to other vectorized lists of words in an n-dimensional vector space. Related words and/or groups of words appear next to each other in that space. Vectorizing them allows us to measure their similarities with some exactitude and cluster them. Those clusters form the basis of search, sentiment analysis and recommendations. </p>
+
+<p>The output of the Word2vec neural net is a vocabulary with a vector attached to it, which can be fed into a deep-learning net for classification/labeling. </p>
+
+<p>The skip-gram representation popularized by Mikolov and used in the DL4J implementation has proven to be more accurate than other models due to the more generalizable contexts generated. </p>
+
+<p>Broadly speaking, we measure words’ proximity to each other through their cosine similarity, which gauges the distance/dissimilarity between two word vectors. A perfect 90-degree angle represents identity; i.e. France equals France, while Spain has a cosine distance of 0.678515 from France, the highest of any other country.</p>
+
+<p>Here’s a graph of words associated with “China” using Word2vec:</p>
+
+<p><img src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/word2vec.png" alt="Alt text"> </p>
+
+<h3 id="a-nameanatomyanatomy-of-word2veca"><a name="anatomy">Anatomy of Word2vec</a></h3>
+
+<p>What do we talk about when we talk about Word2vec? Deeplearning4j’s natural-language processing components:</p>
+
+<ul>
+  <li><strong>SentenceIterator/DocumentIterator</strong>: Used to iterate over a dataset. A SentenceIterator returns strings and a DocumentIterator works with inputstreams. Use the SentenceIterator wherever possible.</li>
+  <li><strong>Tokenizer/TokenizerFactory</strong>: Used in tokenizing the text. In NLP terms, a sentence is represented as a series of tokens. A TokenizerFactory creates an instance of a tokenizer for a “sentence.” </li>
+  <li><strong>VocabCache</strong>: Used for tracking metadata including word counts, document occurrences, the set of tokens (not vocab in this case, but rather tokens that have occurred), vocab (the features included in both bag of words as well as the word vector lookup table)</li>
+  <li><strong>Inverted Index</strong>: Stores metadata about where words occurred. Can be used for understanding the dataset. A Lucene index with the Lucene implementation[1] is automatically created.</li>
+</ul>
+
+<p>Briefly, a two-layer neural net is trained with <a href="http://deeplearning4j.org/glossary.html#downpoursgd">Gradient Descent</a>. The connection weights for the neural net are of a specified size. <em>syn0</em> in Word2vec terms is the wordvector lookup table, <em>syn1</em> is the activation, and a hierarchical Softmax trains on the two-layer net to calculate the likelihoods of various words being near one another. The Word2vec implementation here uses <a href="http://deeplearning4j.org/glossary.html#skipgram">skipgrams</a>.</p>
+
+<h2 id="a-namecodetraininga"><a name="code">Training</a></h2>
+
+<p>Word2Vec trains on raw text. It then records the context, or usage, of each word encoded as word vectors. After training, it’s used as lookup table to compose windows of training text for various tasks in natural-language processing.</p>
+
+<p>After lemmatization, Word2vec will conduct automatic multithreaded training based on your sentence data. Then you’ll want to save the model. There are a few different components to Word2vec. One of these is the vocab cache. The normal way to save models in deeplearning4j is via the SerializationUtils (java serialization akin to python pickling)</p>
+
+<pre><code>    SerializationUtils.saveObject(vec, new File("mypath"));
+</code></pre>
+
+<p>This will save Word2vec to mypath. You can reload it into memory like this:</p>
+
+<pre><code>    Word2Vec vec = SerializationUtils.readObject(new File("mypath"));
+</code></pre>
+
+<p>You can then use Word2vec as a lookup table in the following way:</p>
+
+<pre><code>    INDArray wordVector = vec.getWordVectorMatrix("myword");
+    double[] wordVector = vec.getWordVector("myword");
+</code></pre>
+
+<p>If the word isn’t in the vocabulary, Word2vec returns zeros – nothing more.</p>
+
+<h3 id="a-namewindowswindowsa"><a name="windows">Windows</a></h3>
+
+<p>Word2Vec works with neural networks by facilitating the moving-window model for training on word occurrences. There are two ways to get windows for text:</p>
+
+<pre><code>  List&lt;Window&gt; windows = Windows.windows("some text");
+</code></pre>
+
+<p>This will select moving windows of five tokens from the text (each member of a window is a token).</p>
+
+<p>You also may want to use your own custom tokenizer like this:</p>
+
+<pre><code>  TokenizerFactory tokenizerFactory = new UimaTokenizerFactory();
+  List&lt;Window&gt; windows = Windows.windows("text",tokenizerFactory);
+</code></pre>
+
+<p>This will create a tokenizer for the text, and moving windows based on the tokenizer.</p>
+
+<pre><code>  List&lt;Window&gt; windows = Windows.windows("text",tokenizerFactory);
+</code></pre>
+
+<p>This will create a tokenizer for the text and create moving windows based on that.</p>
+
+<p>Notably, you can also specify the window size like so:</p>
+
+<pre><code>  TokenizerFactory tokenizerFactory = new UimaTokenizerFactory();
+  List&lt;Window&gt; windows = Windows.windows("text",tokenizerFactory,windowSize);
+</code></pre>
+
+<p>Training word sequence models is done through optimization with the <a href="http://deeplearning4j.org/doc/org/deeplearning4j/word2vec/viterbi/Viterbi.html">Viterbi algorithm</a>.</p>
+
+<p>The general idea is to train moving windows with Word2vec and classify individual windows (with a focus word) with certain labels. This could be done for part-of-speech tagging, semantic-role labeling, named-entity recognition and other tasks.</p>
+
+<p>Viterbi calculates the most likely sequence of events (labels) given a transition matrix (the probability of going from one state to another). Here’s an example snippet for setup:</p>
+
+<script src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/MovingWindowExample.java"></script>
+
+<p>From there, each line will be handled something like this:</p>
+
+<pre><code>    &lt;ORGANIZATION&gt; IBM &lt;/ORGANIZATION&gt; invented a question-answering robot called &lt;ROBOT&gt;Watson&lt;/ROBOT&gt;.
+</code></pre>
+
+<p>Given a set of text, Windows.windows automatically infers labels from bracketed capitalized text.</p>
+
+<p>If you do this:</p>
+
+<pre><code>    String label = window.getLabel();
+</code></pre>
+
+<p>on anything containing that window, it will automatically contain that label. This is used in bootstrapping a prior distribution over the set of labels in a training corpus.</p>
+
+<p>The following code saves your Viterbi implementation for later use:</p>
+
+<pre><code>    SerializationUtils.saveObject(viterbi, new File("mypath"));
+</code></pre>
+
+<h3 id="a-namegramsn-grams--skip-gramsa"><a name="grams">N-grams &amp; Skip-grams</a></h3>
+
+<p>Words are read into the vector one at a time, <em>and scanned back and forth within a certain range</em>, much like n-grams. (An n-gram is a contiguous sequence of n items from a given linguistic sequence; it is the nth version of unigram, bigram, trigram, four-gram or five-gram.)  </p>
+
+<p>This n-gram is then fed into a neural network to learn the significance of a given word vector; i.e. significance is defined as its usefulness as an indicator of certain larger meanings, or labels. </p>
+
+<p><img src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/SikQtsk.png" alt="enter image description here"></p>
+
+<p>Word2vec uses different kinds of “windows” to take in words: continuous n-grams and skip-grams. </p>
+
+<p>Consider the following sentence:</p>
+
+<pre><code>How’s the weather up there?
+</code></pre>
+
+<p>This can be broken down into a series of continuous trigrams.</p>
+
+<pre><code>{“How’s”, “the”, “weather”}
+{“the”, “weather”, “up”}
+{“weather”, “up”, “there”}
+</code></pre>
+
+<p>It can also be converted into a series of skip-grams.</p>
+
+<pre><code>{“How’s”, “the”, “up”}
+{“the”, “weather”, “there”}
+{“How’s”, “weather”, “up”}
+{“How’s”, “weather”, “there”}
+...
+</code></pre>
+
+<p>A skip-gram, as you can see, is a form of discontinous n-gram.</p>
+
+<p>In the literature, you will often see references to a “context window.” In the example above, the context window is 3. Many windows use a context window of 5. </p>
+
+<h3 id="a-namedatasetthe-dataseta"><a name="dataset">The Dataset</a></h3>
+
+<p>For this example, we’ll use a small dataset of articles from the Reuters newswire. </p>
+
+<p>With DL4J, you can use a <strong><a href="https://uima.apache.org/">UimaSentenceIterator</a></strong> to intelligently load your data. For simplicity’s sake, we’ll use a <strong>FileSentenceIterator</strong>.</p>
+
+<h3 id="a-nameloadloading-your-dataa"><a name="load">Loading Your Data</a></h3>
+
+<p>DL4J makes it easy to load a corpus of documents. For this example, we have a folder in the user home directory called “reuters,” containing a couple articles.</p>
+
+<p>Consider the following code:</p>
+
+<pre><code>String reuters= System.getProperty("user.home") +             
+new String("/reuters/");
+File file = new File(reuters);
+
+SentenceIterator iter = new FileSentenceIterator(new SentencePreProcessor() {
+@Override
+public String preProcess(String sentence) {
+    return new 
+    InputHomogenization(sentence).transform();
+    }
+},file);
+</code></pre>
+
+<p>In lines 1 and 2, we get a file pointer to the directory ‘reuters’. Then we can pass that to FileSentenceIterator. The SentenceIterator is a critical component to DL4J’s Word2Vec usage. This allows us to scan through your data easily, one sentence at a time.</p>
+
+<p>On lines 4-8, we prepare the data by homogenizing it (e.g. lower-case all words and remove punctuation marks), which makes it easier for processing. </p>
+
+<h3 id="a-namepreparepreparing-to-create-a-word2vec-objecta"><a name="prepare">Preparing to Create a Word2Vec Object</a></h3>
+
+<p>Next we need the following</p>
+
+<pre><code>    TokenizerFactory t = new UimaTokenizerFactory();
+</code></pre>
+
+<p>In general, a tokenizer takes raw streams of undifferentiated text and returns discrete, tidy, tangible representations, which we call tokens and are actually words. Instead of seeing something like: </p>
+
+<pre><code>the|brown|fox   jumped|over####spider-man.
+</code></pre>
+
+<p>A tokenizer would give us a list of words, or tokens, that we can recognize as the following list</p>
+
+<ol>
+  <li>the</li>
+  <li>brown</li>
+  <li>fox</li>
+  <li>jumped</li>
+  <li>over</li>
+  <li>spider-man</li>
+</ol>
+
+<p>A smart tokenizer will recognize that the hyphen in <em>spider-man</em> can be part of the name. </p>
+
+<p>The word “Uima” refers to an Apache project – Unstructured Information Management applications – that helps make sense of unstructured data, as a tokenizer does. It is, in fact, a smart tokenizer. </p>
+
+<h3 id="a-namecreatecreating-a-word2vec-objecta"><a name="create">Creating a Word2Vec object</a></h3>
+
+<p>Now we can actually write some code to create a Word2Vec object. Consider the following:</p>
+
+<pre><code>Word2Vec vec = new Word2Vec.Builder().windowSize(5).layerSize(300).iterate(iter).tokenizerFactory(t).build();
+</code></pre>
+
+<p>Here we can create a word2Vec with a few parameters</p>
+
+<pre><code>windowSize : Specifies the size of the n-grams. 5 is a good default
+
+iterate : The SentenceIterator object that we created earlier
+
+tokenizerFactory : Our UimaTokenizerFactory object that we created earlier
+</code></pre>
+
+<p>After this line it’s also a good idea to set up any other parameters you need.</p>
+
+<p>Finally, we can actually fit our data to a Word2Vec object</p>
+
+<pre><code>vec.fit();
+</code></pre>
+
+<p>That’s it. The fit() method can take a few moments to run, but when it finishes, you are free to start querying a Word2Vec object any way you want. </p>
+
+<pre><code>String oil = new String("oil");
+System.out.printf("%f\n", vec.similarity(oil, oil));
+</code></pre>
+
+<p>In this example, you should get a similarity of 1. Word2Vec uses cosine similarity, and a cosine similarity of two identical vectors will always be 1. </p>
+
+<p>Here are some functions you can call:</p>
+
+<ol>
+  <li><em>similarity(String, String)</em> - Find the cosine similarity between words</li>
+  <li><em>analogyWords(String A, String B, String x)</em> - A is to B as x is to ?</li>
+  <li><em>wordsNearest(String A, int n)</em> - Find the n-nearest words to A</li>
+</ol>
+
+<h3 id="a-nametroubletroubleshooting--tuning-word2veca"><a name="trouble">Troubleshooting &amp; Tuning Word2Vec</a></h3>
+
+<p><em>Q: I get a lot of stack traces like this</em></p>
+
+<pre><code>   java.lang.StackOverflowError: null
+   at java.lang.ref.Reference.&lt;init&gt;(Reference.java:254) ~[na:1.8.0_11]
+   at java.lang.ref.WeakReference.&lt;init&gt;(WeakReference.java:69) ~[na:1.8.0_11]
+   at java.io.ObjectStreamClass$WeakClassKey.&lt;init&gt;(ObjectStreamClass.java:2306) [na:1.8.0_11]
+   at java.io.ObjectStreamClass.lookup(ObjectStreamClass.java:322) ~[na:1.8.0_11]
+   at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1134) ~[na:1.8.0_11]
+   at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548) ~[na:1.8.0_11]
+</code></pre>
+
+<p><em>A:</em> Look inside the directory where you started your Word2vec application. This can, for example, be an IntelliJ project home directory or the directory where you typed Java at the command line. It should have some directories that look like:</p>
+
+<pre><code>   ehcache_auto_created2810726831714447871diskstore  
+   ehcache_auto_created4727787669919058795diskstore
+   ehcache_auto_created3883187579728988119diskstore  
+   ehcache_auto_created9101229611634051478diskstore
+</code></pre>
+
+<p>You can shut down your Word2vec application and try to delete them.</p>
+
+<p><em>Q: Not all of the words from my raw text data are appearing in my Word2vec object…</em></p>
+
+<p><em>A:</em> Try to raise the layer size via <strong>.layerSize()</strong> on your Word2Vec object like so</p>
+
+<pre><code>    Word2Vec vec = new Word2Vec.Builder().layerSize(300).windowSize(5)
+            .layerSize(300).iterate(iter).tokenizerFactory(t).build();
+</code></pre>
+
+<h3 id="a-namedbnfine-tuning-dbnsa"><a name="dbn">Fine-tuning DBNs</a></h3>
+
+<p>Now that you have a basic idea of how to set up Word2Vec, here’s one example of how it can be used with DL4J’s API:</p>
+
+<script src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/Word2VecExample.java"></script><script type="text/javascript" src="./Deeplearning4j - Open-source, distributed deep learning for the JVM_files/prettify.js"></script><link rel="stylesheet" href="http://gist-it.appspot.com/assets/embed.css"><link rel="stylesheet" href="http://gist-it.appspot.com/assets/prettify/prettify.css"><div class="gist-it-gist">
+<div class="gist-file">
+    <div class="gist-data">
+        
+        <pre class="prettyprint prettyprinted"><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Word2VecExample</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">SentenceIterator</span><span class="pln"> iter</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">TokenizerFactory</span><span class="pln"> tokenizer</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="typ">Word2Vec</span><span class="pln"> vec</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> VEC_PATH </span><span class="pun">=</span><span class="pln"> </span><span class="str">"vec2.ser"</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> CACHE_SER </span><span class="pun">=</span><span class="pln"> </span><span class="str">"cache.ser"</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Word2VecExample</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> path</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">iter </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">LineSentenceIterator</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="pln">path</span><span class="pun">));</span><span class="pln">
+        tokenizer </span><span class="pun">=</span><span class="pln">  </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">DefaultTokenizerFactory</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">args</span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt;=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln">
+            </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Word2VecExample</span><span class="pun">(</span><span class="pln">args</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]).</span><span class="pln">train</span><span class="pun">();</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="typ">ClassPathResource</span><span class="pln"> resource </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">ClassPathResource</span><span class="pun">(</span><span class="str">"raw_sentences.txt"</span><span class="pun">);</span><span class="pln">
+            </span><span class="typ">File</span><span class="pln"> f </span><span class="pun">=</span><span class="pln"> resource</span><span class="pun">.</span><span class="pln">getFile</span><span class="pun">();</span><span class="pln">
+            </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Word2VecExample</span><span class="pun">(</span><span class="pln">f</span><span class="pun">.</span><span class="pln">getAbsolutePath</span><span class="pun">()).</span><span class="pln">train</span><span class="pun">();</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> train</span><span class="pun">()</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">VocabCache</span><span class="pln"> cache</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">vec </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">null</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> </span><span class="pun">!</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="pln">VEC_PATH</span><span class="pun">).</span><span class="pln">exists</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            cache </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">InMemoryLookupCache</span><span class="pun">.</span><span class="typ">Builder</span><span class="pun">()</span><span class="pln">
+                    </span><span class="pun">.</span><span class="pln">lr</span><span class="pun">(</span><span class="lit">2e-5</span><span class="pun">).</span><span class="pln">vectorLength</span><span class="pun">(</span><span class="lit">100</span><span class="pun">).</span><span class="pln">build</span><span class="pun">();</span><span class="pln">
+
+            vec </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Word2Vec</span><span class="pun">.</span><span class="typ">Builder</span><span class="pun">().</span><span class="pln">minWordFrequency</span><span class="pun">(</span><span class="lit">5</span><span class="pun">).</span><span class="pln">vocabCache</span><span class="pun">(</span><span class="pln">cache</span><span class="pun">)</span><span class="pln">
+                    </span><span class="pun">.</span><span class="pln">windowSize</span><span class="pun">(</span><span class="lit">5</span><span class="pun">)</span><span class="pln">
+                    </span><span class="pun">.</span><span class="pln">layerSize</span><span class="pun">(</span><span class="lit">100</span><span class="pun">).</span><span class="pln">iterate</span><span class="pun">(</span><span class="pln">iter</span><span class="pun">).</span><span class="pln">tokenizerFactory</span><span class="pun">(</span><span class="pln">tokenizer</span><span class="pun">)</span><span class="pln">
+                    </span><span class="pun">.</span><span class="pln">build</span><span class="pun">();</span><span class="pln">
+            vec</span><span class="pun">.</span><span class="pln">setCache</span><span class="pun">(</span><span class="pln">cache</span><span class="pun">);</span><span class="pln">
+            vec</span><span class="pun">.</span><span class="pln">fit</span><span class="pun">();</span><span class="pln">
+
+
+            </span><span class="typ">SerializationUtils</span><span class="pun">.</span><span class="pln">saveObject</span><span class="pun">(</span><span class="pln">vec</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="pln">VEC_PATH</span><span class="pun">));</span><span class="pln">
+            </span><span class="typ">SerializationUtils</span><span class="pun">.</span><span class="pln">saveObject</span><span class="pun">(</span><span class="pln">cache</span><span class="pun">,</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="pln">CACHE_SER</span><span class="pun">));</span><span class="pln">
+
+        </span><span class="pun">}</span><span class="pln">
+
+
+        </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            vec </span><span class="pun">=</span><span class="pln"> </span><span class="typ">SerializationUtils</span><span class="pun">.</span><span class="pln">readObject</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="pln">VEC_PATH</span><span class="pun">));</span><span class="pln">
+            cache </span><span class="pun">=</span><span class="pln"> </span><span class="typ">SerializationUtils</span><span class="pun">.</span><span class="pln">readObject</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">File</span><span class="pun">(</span><span class="pln">CACHE_SER</span><span class="pun">));</span><span class="pln">
+            vec</span><span class="pun">.</span><span class="pln">setCache</span><span class="pun">(</span><span class="pln">cache</span><span class="pun">);</span><span class="pln">
+
+            </span><span class="kwd">for</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> s </span><span class="pun">:</span><span class="pln"> cache</span><span class="pun">.</span><span class="pln">words</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">s</span><span class="pun">);</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+
+            </span><span class="typ">BufferedReader</span><span class="pln"> reader </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">BufferedReader</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">InputStreamReader</span><span class="pun">(</span><span class="typ">System</span><span class="pun">.</span><span class="kwd">in</span><span class="pun">));</span><span class="pln">
+            </span><span class="typ">String</span><span class="pln"> line</span><span class="pun">;</span><span class="pln">
+            </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Print similarity"</span><span class="pun">);</span><span class="pln">
+            </span><span class="kwd">while</span><span class="pun">((</span><span class="pln">line </span><span class="pun">=</span><span class="pln"> reader</span><span class="pun">.</span><span class="pln">readLine</span><span class="pun">())</span><span class="pln"> </span><span class="pun">!=</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+                </span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> split </span><span class="pun">=</span><span class="pln"> line</span><span class="pun">.</span><span class="pln">split</span><span class="pun">(</span><span class="str">","</span><span class="pun">);</span><span class="pln">
+                </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">cache</span><span class="pun">.</span><span class="pln">indexOf</span><span class="pun">(</span><span class="pln">split</span><span class="pun">[</span><span class="lit">0</span><span class="pun">])</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">err</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Word "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> split</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" not in vocab"</span><span class="pun">);</span><span class="pln">
+                    </span><span class="kwd">continue</span><span class="pun">;</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+                </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">cache</span><span class="pun">.</span><span class="pln">indexOf</span><span class="pun">(</span><span class="pln">split</span><span class="pun">[</span><span class="lit">01</span><span class="pun">])</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">err</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="str">"Word "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> split</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">" not in vocab"</span><span class="pun">);</span><span class="pln">
+                    </span><span class="kwd">continue</span><span class="pun">;</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+                </span><span class="typ">System</span><span class="pun">.</span><span class="kwd">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">vec</span><span class="pun">.</span><span class="pln">similarity</span><span class="pun">(</span><span class="pln">split</span><span class="pun">[</span><span class="lit">0</span><span class="pun">],</span><span class="pln">split</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]));</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">}</span></pre>
+        
+    </div>
+    
+    <div class="gist-meta">
+        
+        <span><a href="https://github.com/SkymindIO/dl4j-examples/blob/master/src/main/java/org/deeplearning4j/word2vec/Word2VecExample.java">This Gist</a> brought to you by <a href="http://gist-it.appspot.com/">gist-it</a>.</span>
+        
+        <span style="float: right; color: #369;"><a href="https://github.com/SkymindIO/dl4j-examples/raw/master/src/main/java/org/deeplearning4j/word2vec/Word2VecExample.java">view raw</a></span>
+        <span style="float: right; margin-right: 8px;">
+            <a style="color: rgb(102, 102, 102);" href="https://github.com/SkymindIO/dl4j-examples/blob/master/src/main/java/org/deeplearning4j/word2vec/Word2VecExample.java">Word2VecExample.java</a></span>
+            <!-- Generated by: http://gist-it.appspot.com -->
+    </div>
+    
+</div>
+</div><script type="text/javascript">prettyPrint();</script>
+
+<p>There are a couple parameters to pay special attention to here. The first is the number of words to be vectorized in the window, which you enter after WindowSize. The second is the number of nodes contained in the layer, which you’ll enter after LayerSize. Those two numbers will be multiplied to obtain the number of inputs. </p>
+
+<p>Word2Vec is especially useful in preparing text-based data for information retrieval and QA systems, which DL4J implements with <a href="http://deeplearning4j.org/deepautoencoder.html">deep autoencoders</a>. For sentence parsing and other NLP tasks, we also have an implementation of <a href="http://deeplearning4j.org/recursiveneuraltensornetwork.html">recursive neural tensor networks</a>.</p>
+
+<h3 id="a-namenextnext-stepsa"><a name="next">Next Steps</a></h3>
+
+<p>An example of sentiment analysis using <a href="http://deeplearning4j.org/sentiment_analysis_word2vec.html">Word2Vec is here</a>. </p>
+
+<p>(We are still testing our recent implementations of Doc2vec and GLoVE – watch this space!)</p>
+
+
+      <div class="footer">
+        <p>
+          © 2015. <em>DL4J is distributed under an Apache 2.0 License.</em> <br>
+          <a href="https://github.com/SkymindIO/deeplearning4j">Github Repo</a> // <a href="https://twitter.com/dl4j1">Tweets</a> // <a href="https://webchat.freenode.net/">#deeplearning4j @IRC</a> // <a href="https://groups.google.com/forum/#!forum/deeplearning4j">Google Group</a> <br><a href="http://deeplearning4j.org/zh-index.html">中文</a> // <a href="http://nd4j.org/ja-getstarted.html">日语</a>
+          
+        </p>
+      </div>
+    </div>       
+
+</body></html>

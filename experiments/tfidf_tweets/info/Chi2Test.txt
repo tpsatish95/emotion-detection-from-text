@@ -1,0 +1,5 @@
+Perform Chi2 Test on our Train features and target values
+Checking whether the occurrence of a specific term and a class are dependent
+K features with such high dependency values (distinguishing between classes) are taken into account. 
+
+It is an available algorithm in SciKit-Learn.preprocessing package.

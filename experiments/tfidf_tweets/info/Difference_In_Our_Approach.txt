@@ -1,0 +1,12 @@
+-They have used a lot of vocabulary based feature extraction techniques that do not scale up as their vocabulary is small.
+
+-We do pre-processing of text with the 7 filters, to support unstructured tweets.
+
+-We use TF-IDF features that don't need any vocabulary instead of the unigrams and bigrams that they use, that might be nosiy.
+
+-We have also filtered features if they exceeded the Max Document Frequency of 50%.
+
+-We are using Chi2 test as a feature selection (in our case 3.5k features from 71k)
+
+-They use Logistic regression from LIBLINEAR and not LinearSVM.
+

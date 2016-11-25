@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0067)http://www.bogotobogo.com/python/NLTK/tokenization_tagging_NLTK.php -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>NLTK (Natural Language Toolkit) tokenization and tagging - 2014</title>
+  <meta content="NLTK tokenization and tagging" name="description">
+  <meta content="Natural Language Toolkit, NLTK, tokenization and tagging, Stop Words removal" name="keywords">
+  
+ <link type="text/css" rel="stylesheet" href="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/bogostyleWidePre.css">
+  <link href="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/css" rel="stylesheet" type="text/css">
+
+<!-- CDN MathJax -->
+<script src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/cb=gapi.loaded_2" async=""></script><script src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/cb=gapi.loaded_1" async=""></script><script async="" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/analytics.js"></script><script type="text/javascript" async="" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/platform.js" gapi_processed="true"></script><script src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/cb=gapi.loaded_0" async=""></script><script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/MathJax.js">
+</script>
+
+<!-- Google+ -->
+<script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/plusone.js" gapi_processed="true"></script>
+<link rel="stylesheet" type="text/css" href="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/widget007.old.css" media="all"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<div id="page" align="center">
+
+<div id="tops">
+
+<div class="bogo"><a href="http://www.bogotobogo.com/index.php">bogotobogo</a></div>
+
+<div class="topmenu">
+<li><a href="http://www.bogotobogo.com/index.php">Home</a></li>
+<li><a href="http://www.bogotobogo.com/about_us.php">About Us</a></li>
+<li><a href="http://www.bogotobogo.com/products.php">Products</a></li>
+<li><a href="http://www.bogotobogo.com/our_services.php">Our Services</a></li>
+<li><a href="http://www.bogotobogo.com/contact_us.php" target="_blank">Contact Us</a></li>
+</div>
+
+<div id="submenu">
+
+<li><a href="http://www.bogotobogo.com/Qt/Qt5_Creating_QtQuick2_QML_Application_Animation_A.php">Qt5</a></li>
+<li><a href="http://www.bogotobogo.com/Android/android.php">Android</a></li>
+<!--
+<li><a href="http://www.bogotobogo.com/JQuery/JQuery_document_ready_click_function.php">jQuery</a></li>
+-->
+<li><a href="http://www.bogotobogo.com/Algorithms/algorithms.php">Algorithms</a></li>
+<li><a href="http://www.bogotobogo.com/cplusplus/cpptut.php">C++</a></li>
+<!--
+<li><a href="http://www.bogotobogo.com/Linux/linux_tips1.php">Linux</a></li>
+-->
+<li><a href="http://www.bogotobogo.com/Java/tutorial/on_java.php">Java</a></li>
+<li><a href="http://www.bogotobogo.com/php/phptut.php">PHP</a></li>
+ 
+<li><a href="http://www.bogotobogo.com/DesignPatterns/introduction.php">Design Patterns</a></li>
+ 
+<li><a href="http://www.bogotobogo.com/python/pytut.php">Python</a> </li>
+<li><a href="http://www.bogotobogo.com/CSharp/.netframework.php">C#</a></li>
+<!--
+<li><a href="http://www.bogotobogo.com/VisualBasicSQL/introduction.php">VB</a></li>
+-->
+ 
+<li><a href="http://www.bogotobogo.com/DevOps/DevOps_Jenkins_Chef_Puppet_Graphite_Logstash.php">DevOps</a></li>
+ 
+<li><a href="http://www.bogotobogo.com/FFMpeg/ffmpeg_cropdetect_ffplay.php">FFmpeg</a></li>
+<li><a href="http://www.bogotobogo.com/Matlab/Matlab_Tutorial_Manipulating_Audio_I_Reverse_Delay_Tone_Control_Changing_Speed_Removing_Vocals.php">Matlab</a></li>
+<li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.php">OpenCV</a></li>
+<li><a href="http://www.bogotobogo.com/VideoStreaming/videostreaming_etc.php">Streaming</a></li>
+</div>
+
+</div><div class="linklist">
+
+<!-- Place this tag where you want the widget to render. -->
+<div id="___person_0" style="position: absolute; width: 450px; left: -10000px;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1418452519202" name="I0_1418452519202" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/person.html" data-gapiattached="true"></iframe></div><div class="g-person" data-width="304" data-href="//plus.google.com/111664369941456137911" data-rel="author" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<br><br>
+
+
+<!-- Inner List -->
+<h1>List of Python Tutorials</h1>
+
+<ul>
+   <li><a href="http://www.bogotobogo.com/python/pytut.php">Python Home</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_introduction.php">Introduction</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_running.php">Running Python Programs (os, sys, import)</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_modules_idle.php">Modules and IDLE (Import, Reload, exec)</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_numbers_strings.php">Object Types - Numbers, Strings, and None</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_strings.php">Strings - Escape Sequence, Raw String, and Slicing</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_strings_method.php">Strings - Methods</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_string_formatting.php">Formatting Strings - expressions &amp; method calls</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_files.php">Files and os.path</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_traversing_directory_tree_recursively_os_walk.php">Traversing directories recursively</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_subprocess_module.php">Subprocess Module</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_regularExpressions.php">Regular Expressions with Python</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_lists.php">Object Types - Lists</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_dictionaries_tuples.php">Object Types - Dictionaries and Tuples</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_functions_def.php">Functions def, *args, **kargs</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_functions_lambda.php">Functions lambda</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_functions_built_in.php">Built-in Functions</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_fncs_map_filter_reduce.php">map, filter, and reduce</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_decorators.php">Decorators</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_list_comprehension.php">List Comprehension</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_sets_union_intersection.php">Sets (union/intersection) and itertools - Jaccard coefficient &amp; shingling to check plagiarism</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_hash_tables_hashing_dictionary_associated_arrays.php">Hashing (Hash tables &amp; hashlib)</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_dictionary_comprehension_with_zip_from_list.php">Dictionary Comprehension with zip</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_function_with_yield_keyword_is_a_generator_iterator_next.php">The yield keyword</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_generators.php">Generator Functions and Expressions</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_function_with_generator_send_method_yield_keyword_iterator_next.php">generator.send() method</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_iterators.php">Iterators</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_iterators2.php">Iterators II</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_classes_instances.php">Classes and Instances (__init__, __call__, etc.)</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_if__name__equals__main__.php">if__name__ == '__main__'</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_argparse.php">argparse</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_differences_between_static_method_and_class_method_instance_method.php">@static method vs class method</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_private_attributes_methods.php">Private attributes and private methods</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_bits_bytes_bitstring_constBitStream.php">bits, bytes, bitstring, and constBitStream</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_serialization_pickle_json.php">Python Object Serialization - pickle and json</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_yaml_json_conversion.php">Python Object Serialization - yaml and json</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_PriorityQueue_heapq_Data_Structure.php">Priority queue and heap queue data structure</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_graph_data_structures.php">Graph data structure</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_Dijkstras_Shortest_Path_Algorithm.php">Dijkstra's shortest path algorithm</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_Prims_Spanning_Tree_Data_Structure.php">Prim's spanning tree algorithm</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_closure.php">Closure</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_functional_programming.php">Functional programming in Python</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_ssh_remote_run.php">Remote running a local file using ssh </a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_sqlite_connect_create_drop_table.php">SQLite 3 - A. Connecting to DB, create/drop table, and insert data into a table</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_sqlite_select_update_delete.php">SQLite 3 - B. Selecting, updating and deleting data</a></li>
+   <li><a href="http://www.bogotobogo.com/python/MongoDB_PyMongo/python_MongoDB_pyMongo_tutorial_installing.php">MongoDB with PyMongo I - Installing MongoDB ...</a></li>
+
+   <li><a href="http://www.bogotobogo.com/python/python_http_web_services.php">Python HTTP Web Services - urllib, httplib2</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_Web_scraping_with_selenium_for_domain_availability.php">Web scraping with Selenium for checking domain availability</a></li>
+   <li><a href="http://www.bogotobogo.com/python/Multithread/python_multithreading_creating_threads.php">Multithreading ...</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_network_programming_server_client.php">Python Network Programming I - Basic Server / Client</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_network_programming_tcp_server_client_chat_server_chat_client_select.php">Python Network Programming II - Chat Server / Client</a></li>
+    <li><a href="http://www.bogotobogo.com/python/python_network_programming_tcp_server_client_chat_server_chat_client_select.php">Python Network Programming III - Echo Server using socketserver network framework</a></li>
+    <li><a href="http://www.bogotobogo.com/python/python_network_programming_tcp_server_client_chat_server_chat_client_select.php">Python Network Programming IV - Asynchronous Request Handling : ThreadingMixIn and ForkingMixIn</a></li>
+   <li><a href="http://www.bogotobogo.com/python/python_interview_questions.php">Python Interview Questions I</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_interview_questions_2.php">Python Interview Questions II</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_cpp_sip.php">Python &amp; C++ with SIP</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/pydev_eclipse_plugin_install_python_IDE.php">PyDev with Eclipse</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_matplotlib.php">Matplotlib</a> </li>
+
+   <li><a href="http://www.bogotobogo.com/python/python_numpy_array_tutorial_basic_A.php">NumPy array basics A</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_numpy_matrix_tutorial.php">NumPy Matrix and Linear Algebra</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_cellular_automata.php">Celluar Automata</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_numpy_batch_gradient_descent_algorithm.php">Batch gradient descent algorithm</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_longest_common_substring_lcs_algorithm_generalized_suffix_tree.php">Longest Common Substring Algorithm</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_unit_testing.php">Python Unit Test - TDD using unittest.TestCase class</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_site_page_ranking_by_keywords.php">Simple tool - Google page ranking by keywords</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/GoogleApp/python_GoogleApp_HelloWorld.php">Google App Hello World</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/GoogleApp/python_GoogleApp_WebApp2_WSGI.php">Google App webapp2 &amp; WSGI</a></li>
+   <li><a href="http://www.bogotobogo.com/python/GoogleApp/python_GoogleApp_Uploading_HelloWorld.php">Uploading Google App Hello World</a> 
+   </li><li><a href="http://www.bogotobogo.com/python/python_differences_Python2_vs_Python3_port.php">Python 2 vs Python 3</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/Bottle/Python_Bottle_Framework.php">bottle 0.12.7 - Fast and simple WSGI-micro framework for small web-applications ...</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/Fabric/python_Fabric.php">Fabric - streamlining the use of SSH for application deployment</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.php">Neural Networks with backpropagation for XOR using one hidden layer</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/NLTK/NLTK_install.php">NLP - NLTK (Natural Language Toolkit) ...</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/RabbitMQ_Celery/python_Installing_RabbitMQ_Celery.php">RabbitMQ(Message broker server) &amp; Celery(Task queue) ...</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.php">OpenCV3 &amp; Matplotlib ...</a> </li>
+   <li><a href="http://www.bogotobogo.com/FFMpeg/ffmpeg_fade_in_fade_out_transitions_effects_filters_slideshow_concat.php">Simple tool - Concatenating slides using FFmpeg ...</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.php">iPython - Signal Processing with NumPy</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.php">Machine Learning : scikit-learn ...</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/Django/Python_Django_tutorial_introduction.php">Django 1.6 Web Framework ...</a> </li>
+
+</ul>
+<br>
+
+<div class="skyscraper"><br>
+
+<div class="skyscraper">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4716428189734495";
+/* bogo_link_unit_vertical_medium_160_90 */
+google_ad_slot = "6363851368";
+google_ad_width = 160;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/show_ads.js">
+</script>
+
+<br><br>
+
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4716428189734495";
+/* bogo_skyscraper */
+google_ad_slot = "5321096966";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/show_ads.js">
+</script>
+
+<br>
+<br>
+
+
+<br><br>
+
+
+
+
+
+
+</div></div>
+
+<br>
+<h1>OpenCV 3 image &amp; video processing with Python</h1>
+
+<ul>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3.php" target="_blank">OpenCV 3 with Python</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_matplotlib_rgb_brg_image_load_display_save.php" target="_blank">Image - OpenCV BGR : Matplotlib RGB</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_basic_image_operations_pixel_access_image_load.php" target="_blank">Basic image operations - pixel access</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_NumPy_Arrays_Signal_Processing_iPython.php" target="_blank">iPython - Signal Processing with NumPy</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT.php" target="_blank">Signal Processing with NumPy I - FFT &amp; DFT for sine, square waves, unitpulse, and random signal</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Signal_Processing_with_NumPy_Fourier_Transform_FFT_DFT_2.php" target="_blank">Signal Processing with NumPy II - Image Fourier Transform : FFT &amp; DFT</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Fourier_Transform_FFT_DFT.php" target="_blank">Inverse Fourier Transform of an Image with low pass filter: cv2.idft() </a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_image_histogram_calcHist.php" target="_blank">Image Histogram</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Changing_ColorSpaces_RGB_HSV_HLS.php" target="_blank">Video Capture &amp; Switching colorspaces - RGB / HSV</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Global_Thresholding_Adaptive_Thresholding_Otsus_Binarization_Segmentations.php" target="_blank">Adaptive Thresholding - Otsu's clustering-based image thresholding</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Gradient_Sobel_Laplacian_Derivatives_Edge_Detection.php" target="_blank">Edge Detection - Sobel and Laplacian Kernels</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Canny_Edge_Detection.php" target="_blank">Canny Edge Detection</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Hough%20Circle_Transform.php" target="_blank">Hough Transform - Circles</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation.php" target="_blank">Watershed Algorithm : Marker-based Segmentation I</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Watershed_Algorithm_Marker_Based_Segmentation_2.php" target="_blank">Watershed Algorithm : Marker-based Segmentation II</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Non-local_Means_Denoising_Algorithm_Noise_Reduction.php" target="_blank">Image noise reduction : Non-local Means denoising algorithm</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Object_Detection_Face_Detection_Haar_Cascade_Classifiers.php" target="_blank">Image object detection : Face detection using Haar Cascade Classifiers</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_Segmentation_by_Foreground_Extraction_Grabcut_Algorithm_based_on_Graph_cuts.php" target="_blank">Image segmentation - Foreground extraction Grabcut algorithm based on graph cuts</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Image_reconstruction_Inpainting_Interpolation.php" target="_blank">Image Reconstruction - Inpainting (Interpolation) - Fast Marching Methods</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_mean_shift_tracking_segmentation.php" target="_blank">Video : Mean shift object tracking</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization.php" target="_blank">Machine Learning : Clustering - K-Means clustering I</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Machine_Learning_Clustering_K-Means_Clustering_Vector_Quantization_2.php" target="_blank">Machine Learning : Clustering - K-Means clustering II</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/OpenCV_Python/python_opencv3_Machine_Learning_Classification_K-nearest_neighbors_k-NN.php" target="_blank">Machine Learning : Classification - k-nearest neighbors (k-NN) algorithm</a> </li>
+
+</ul>
+<br>
+<br>
+
+<br>
+<h1>Machine Learning with scikit-learn</h1>
+
+<ul>
+   <li><a href="http://www.bogotobogo.com/python/scikit-learn/scikit-learn_install.php" target="_blank">scikit-learn installation</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/scikit-learn/scikit_machine_learning_features_extraction.php" target="_blank">scikit-learn : Features and feature extraction - iris dataset</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/scikit-learn/scikit_machine_learning_Supervised_Learning_Unsupervised_Learning.php" target="_blank">scikit-learn : Supervised Learning Unsupervised Learning - e.g. Unsupervised PCA dimensionality reduction with iris dataset</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/scikit-learn/scikit_machine_learning_Unsupervised_Learning_Clustering.php" target="_blank">scikit-learn : Unsupervised_Learning - KMeans clustering with iris dataset</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/scikit-learn/scikit_machine_learning_Linearly_Separable_NonLinearly_RBF_Separable_Data_SVM_GUI.php" target="_blank">scikit-learn : Linearly Separable Data - Linear Model &amp; (Gaussian) radial basis function kernel (RBF kernel)</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/scikit-learn/scikit_machine_learning_Support_Vector_Machines_SVM.php" target="_blank">scikit-learn : Support Vector Machines (SVM)</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/scikit-learn/scikit-learn_logistic_regression.php" target="_blank">scikit-learn : Logistic Regression</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/scikit-learn/scikit_learn_Support_Vector_Machines_SVM_spam_filtermachine_learning_.php" target="_blank">scikit-learn : Sample of a spam comment filter using SVM - classifying a good one or a bad one</a> </li>
+   <li>.....</li>
+   <li>Others ==&gt;</li>
+   <li><a href="http://www.bogotobogo.com/python/python_numpy_batch_gradient_descent_algorithm.php">Batch gradient descent algorithm</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/python_Neural_Networks_Backpropagation_for_XOR_using_one_hidden_layer.php">Neural Networks with backpropagation for XOR using one hidden layer</a> </li>
+   <li><a href="http://www.bogotobogo.com/Algorithms/minHash_Jaccard_Similarity_Locality_sensitive_hashing_LSH.php">minHash</a></li>
+   <li><a href="http://www.bogotobogo.com/Algorithms/tf_idf_term_frequency_inverse_document_frequency_NLP_Natural_Language_Processing.php">tf-idf weight</a></li>
+   <li><a href="http://www.bogotobogo.com/Algorithms/Locality_Sensitive_Hashing_LSH_using_Cosine_Distance_Similarity.php">Locality-Sensitive Hashing (LSH) using Cosine Distance (Cosine Similarity)</a></li>
+</ul>
+<br>
+<br>
+</div>
+<div id="contenttext">
+
+<div class="AdSenseSearch">
+
+<br><br>
+
+<form action="http://www.google.com/" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-4716428189734495:1794050961">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" size="55" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: url(http://www.google.com/cse/intl/en/images/google_custom_search_watermark.gif) 0% 50% no-repeat rgb(255, 255, 255);">
+    <input type="submit" name="sa" value="Search">
+  </div>
+<input name="siteurl" type="hidden" value="www.bogotobogo.com/python/NLTK/tokenization_tagging_NLTK.php"><input name="ref" type="hidden" value="www.google.co.in/"><input name="ss" type="hidden" value=""></form>
+
+<script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/brand"></script>
+
+
+
+<br><br>
+</div>
+<div id="bookmarkshare">
+<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
+<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&username=khhong7"><img src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"></a><script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/addthis_widget.js"></script>
+</div>
+<br>
+
+<br>
+
+<div style="padding: 10px;"><span class="titletext">NLTK (Natural Language Toolkit) tokenization and tagging   <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 106px; height: 24px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 106px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" tabindex="0" vspace="0" width="100%" id="I1_1418452519211" name="I1_1418452519211" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div></span></div>
+<br>
+<img src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/NLTK_LOGO.png" alt="NLTK_LOGO.png">
+
+<br>
+<br>
+<br>
+
+
+<div class="bodytext" style="padding: 12px;" align="justify"> 
+
+<br>
+<br><br><br>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4716428189734495";
+/* bogo1 */
+google_ad_slot = "6542308167";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/show_ads.js">
+</script>
+
+<br><br><br>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4716428189734495";
+/* bogo_link_unit_horizontalLarge_728_15 */
+google_ad_slot = "2786322562";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/show_ads.js">
+</script>
+
+<br><br><br><br>
+
+<div class="bodytext" style="padding: 12px;" align="justify">
+
+<br>
+<br>
+<!-- NLTK List -->
+<h1>List of NLTK Tutorials</h1>
+
+<ul>
+   <li><a href="http://www.bogotobogo.com/python/NLTK/NLTK_install.php">Introduction - Install NLTK</a> </li>
+   <li><a href="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/NLTK (Natural Language Toolkit) tokenization and tagging - 2014.html">Tokenizing and Tagging</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/NLTK/Stemming_NLTK.php">Stemming</a> </li>
+   <li><a href="http://www.bogotobogo.com//python/NLTK/chunking_NLTK.php">Chunking</a> </li>
+   <li><a href="http://www.bogotobogo.com//python/NLTK/tf_idf_with_scikit-learn_NLTK.php">tf-idf</a> </li>
+
+</ul>
+<br>
+<br>
+
+<div class="subtitle" id="tokenization">tokenization and tagging</div>
+<p>NLTK provides support for a wide variety of text processing tasks. In this section, we'll do  <b>tokenization</b> and <b>tagging</b>.</p>
+<p>We're going to use <a href="http://www.bogotobogo.com/python/files/NLTK/tokenization/Pearl3.txt">Steinbeck Pearl Ch. 3</a> as an input.</p>
+<pre>import nltk
+from collections import Counter
+
+def get_tokens():
+	with open('/home/k/TEST/NLTK/Pearl3.txt') as pearl:
+		tokens = nltk.<font color="blue">word_tokenize(pearl.read())</font>
+	return tokens
+
+if __name__ == "__main__":
+
+	tokens = get_tokens()
+	print("tokens=%s") %(tokens)
+
+	count = Counter(tokens)
+	print("len(count) = %s") %(len(count))
+	print("most_common = %s") %(count.most_common(10))
+
+	tagged = nltk.<font color="blue">pos_tag(tokens)</font>
+	print("tagged=%s") %(tagged)
+</pre>
+<p>Output:</p>
+<pre>tokens[:20]=['Chapter', '3', 'A', 'town', 'is', 'a', 'thing', 'like', 'a', 'colonial', 'animal.', 'A', 'town', 'has', 'a', 'nervous', 'system', 'and', 'a', 'head']
+len(count) = 1459
+most_common = [('the', 429), ('and', 314), <font color="blue">(',', 313)</font>, ('a', 145), ('of', 138), ('he', 122), ('in', 115), ('his', 110), ('to', 104), ('Kino', 98)]
+tagged[:20]=[('Chapter', 'NN'), ('3', 'CD'), ('A', 'DT'), ('town', 'NN'), ('is', 'VBZ'), ('a', 'DT'), ('thing', 'NN'), ('like', 'IN'), ('a', 'DT'), ('colonial', 'JJ'), ('animal.', 'NNP'), ('A', 'DT'), ('town', 'NN'), ('has', 'VBZ'), ('a', 'DT'), ('nervous', 'JJ'), ('system', 'NN'), ('and', 'CC'), ('a', 'DT'), ('head', 'NN')]
+</pre>
+<br>
+<p>As we see from the output for <b>most_common</b>, we have (',', 313). So, if we don't want to process any punctuation, we can use the character deletion step of <b>translate()</b>:</p>
+<pre>import nltk
+from collections import Counter
+<font color="blue">import string</font>
+
+def get_tokens():
+	with open('/home/k/TEST/NLTK/Pearl3.txt') as pearl:
+		tokens = nltk.word_tokenize(pearl.read().<font color="blue">translate(None, string.punctuation)</font>)
+	return tokens
+
+if __name__ == "__main__":
+
+	tokens = get_tokens()
+	print("tokens[:20]=%s") %(tokens[:20])
+
+	count = Counter(tokens)
+	print("len(count) = %s") %(len(count))
+	print("most_common = %s") %(count.most_common(10))
+
+	tagged = nltk.pos_tag(tokens)
+	print("tagged[:20]=%s") %(tagged[:20])
+</pre>
+<p>Then, we get an output processed without any punctuation:</p>
+<pre>tokens[:20]=['Chapter', '3', 'A', 'town', 'is', 'a', 'thing', 'like', 'a', 'colonial', 'animal', 'A', 'town', 'has', 'a', 'nervous', 'system', 'and', 'a', 'head']
+len(count) = 1299
+most_common = [('the', 429), ('and', 315), ('a', 145), ('of', 138), ('he', 122), ('in', 120), ('his', 110), ('to', 104), ('it', 89), ('was', 84)]
+tagged[:20]=[('Chapter', 'NN'), ('3', 'CD'), ('A', 'DT'), ('town', 'NN'), ('is', 'VBZ'), ('a', 'DT'), ('thing', 'NN'), ('like', 'IN'), ('a', 'DT'), ('colonial', 'JJ'), ('animal', 'JJ'), ('A', 'DT'), ('town', 'NN'), ('has', 'VBZ'), ('a', 'DT'), ('nervous', 'JJ'), ('system', 'NN'), ('and', 'CC'), ('a', 'DT'), ('head', 'NN')]
+</pre>
+<p>Now the size of the count has been reduced from len(count) = 1459 =&gt; len(count) = 1299.</p>
+
+<br><br>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4716428189734495";
+/* bogo_LargeRectangle_336_280 */
+google_ad_slot = "2712696561";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/show_ads.js">
+</script>
+
+<br><br>
+
+<div class="subtitle" id="stopword1">Removing Stop Words I</div>
+<p>Sometimes, common words which would appear to be of little value for selecting documents matching are excluded from the vocabulary entirely. These words are called stop words. The general strategy for determining a stop list is to sort the terms by frequency, and then to label the most frequent terms as a stop list. Then, they are discarded during indexing.</p>
+<p>The example of the list: a, an, the, he, by, it, are, etc.</p>
+<p>Before using the 'stopwords', we need to download the list from nltk, otherwise we may get the error like this:</p>
+<pre>LookupError: 
+**********************************************************************
+  Resource 'corpora/stopwords' not found.  Please use the NLTK
+  Downloader to obtain the resource: &gt;&gt;&gt; nltk.download().
+</pre>
+<p>We may follow the steps after issuing <b>nltk.download()</b> or we can do the following:</p>
+<pre>&gt;&gt;&gt; import nltk
+&gt;&gt;&gt; nltk.download('stopwords')
+</pre>
+<p>Now, we can use the list:</p>
+<pre>&gt;&gt;&gt; from nltk.corpus import stopwords
+&gt;&gt;&gt; stopwords.words('english')
+['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your', 'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 'that', 'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now']
+</pre>
+<p>Let's incorporate the stopwords into our previous code:</p>
+<pre>import nltk
+from collections import Counter
+import string
+<font color="blue">from nltk.corpus import stopwords</font>
+
+def get_tokens():
+	with open('/home/k/TEST/NLTK/Pearl3.txt') as pearl:
+		tokens = nltk.word_tokenize(pearl.read().translate(None, string.punctuation))
+	return tokens
+
+if __name__ == "__main__":
+
+	tokens = get_tokens()
+	print("tokens[:20]=%s") %(tokens[:20])
+	
+	count = Counter(tokens)
+	print("before: len(count) = %s") %(len(count))
+
+	filtered = [w for w in tokens if not w in <font color="blue">stopwords.words('english')</font>]
+
+	print("filtered tokens[:20]=%s") %(filtered[:20])
+	
+	count = Counter(filtered)
+	print("after: len(count) = %s") %(len(count))
+	
+	print("most_common = %s") %(count.most_common(10))
+
+	tagged = nltk.pos_tag(tokens)
+	print("tagged[:20]=%s") %(tagged[:20])
+</pre>
+<p>Output:</p>
+<pre>tokens[:20]=['Chapter', '3', 'A', 'town', 'is', 'a', 'thing', 'like', 'a', 'colonial', 'animal', 'A', 'town', 'has', 'a', 'nervous', 'system', 'and', 'a', 'head']
+before: len(count) = <font color="blue">1299</font>
+filtered tokens[:20]=['Chapter', '3', 'A', 'town', 'thing', 'like', 'colonial', 'animal', 'A', 'town', 'nervous', 'system', 'head', 'shoulders', 'feet', 'A', 'town', 'thing', 'separate', 'towns']
+after: len(count) = <font color="blue">1193</font>
+most_common = [('Kino', 77), ('And', 58), ('The', 48), ('He', 48), ('pearl', 46), ('little', 45), ('said', 38), ('could', 32), ('Juana', 31), ('Kinos', 29)]
+tagged[:20]=[('Chapter', 'NN'), ('3', 'CD'), ('A', 'DT'), ('town', 'NN'), ('thing', 'NN'), ('like', 'IN'), ('colonial', 'JJ'), ('animal', 'JJ'), ('A', 'DT'), ('town', 'NN'), ('nervous', 'JJ'), ('system', 'NN'), ('head', 'NN'), ('shoulders', 'NNS'), ('feet', 'VBP'), ('A', 'DT'), ('town', 'NN'), ('thing', 'NN'), ('separate', 'JJ'), ('towns', 'NNS')]
+</pre>
+<p>Notice that the count has been decreases: 1299=&gt;1193!</p>
+<br><br>
+<br><br>
+
+
+<div class="subtitle" id="stopword2">Removing Stop Words II - lower() </div>
+<p>Even though we removed majority of stopwords, we still have some words in the stopwords list such as 'A'. So, we need to lower the case for all the characters of the text before we start process using <b>lower()</b> function. </p> 
+<p>Here is the final code for this chapter:</p>
+<pre>import nltk
+from collections import Counter
+import string
+from nltk.corpus import stopwords
+
+def get_tokens():
+	with open('/home/k/TEST/NLTK/Pearl3.txt') as pearl:
+		tokens = nltk.word_tokenize(pearl.read().<font color="blue">lower()</font>.translate(None, string.punctuation))
+	return tokens
+
+if __name__ == "__main__":
+
+	tokens = get_tokens()
+	print("tokens[:20]=%s") %(tokens[:20])
+	
+	count = Counter(tokens)
+	print("before: len(count) = %s") %(len(count))
+
+	filtered = [w for w in tokens if not w in stopwords.words('english')]
+
+	print("filtered tokens[:20]=%s") %(filtered[:20])
+	
+	count = Counter(filtered)
+	print("after: len(count) = %s") %(len(count))
+	
+	print("most_common = %s") %(count.most_common(10))
+
+	tagged = nltk.pos_tag(filtered)
+	print("tagged[:20]=%s") %(tagged[:20])
+</pre>
+<p>Output:</p>
+<pre>tokens[:20]=['chapter', '3', 'a', 'town', 'is', 'a', 'thing', 'like', 'a', 'colonial', 'animal', 'a', 'town', 'has', 'a', 'nervous', 'system', 'and', 'a', 'head']
+before: len(count) = 1238
+filtered tokens[:20]=['chapter', '3', 'town', 'thing', 'like', 'colonial', 'animal', 'town', 'nervous', 'system', 'head', 'shoulders', 'feet', 'town', 'thing', 'separate', 'towns', 'two', 'towns', 'alike']
+after: len(count) = 1131
+most_common = [('kino', 77), ('pearl', 50), ('little', 45), ('said', 38), ('could', 32), ('juana', 31), ('kinos', 29), ('doctor', 28), ('eyes', 26), ('came', 26)]
+tagged[:20]=[('chapter', 'NN'), ('3', 'CD'), ('town', 'NN'), ('thing', 'NN'), ('like', 'IN'), ('colonial', 'JJ'), ('animal', 'JJ'), ('town', 'NN'), ('nervous', 'JJ'), ('system', 'NN'), ('head', 'NN'), ('shoulders', 'NNS'), ('feet', 'VBP'), ('town', 'VBN'), ('thing', 'NN'), ('separate', 'JJ'), ('towns', 'NNS'), ('two', 'CD'), ('towns', 'NNS'), ('alike', 'IN')]
+</pre>
+
+
+
+<div class="bodytext" style="padding: 12px;" align="justify"> 
+
+<br>
+<br>
+<!-- NLTK List -->
+<h1>List of NLTK Tutorials</h1>
+
+<ul>
+   <li><a href="http://www.bogotobogo.com/python/NLTK/NLTK_install.php">Introduction - Install NLTK</a> </li>
+   <li><a href="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/NLTK (Natural Language Toolkit) tokenization and tagging - 2014.html">Tokenizing and Tagging</a> </li>
+   <li><a href="http://www.bogotobogo.com/python/NLTK/Stemming_NLTK.php">Stemming</a> </li>
+   <li><a href="http://www.bogotobogo.com//python/NLTK/chunking_NLTK.php">Chunking</a> </li>
+   <li><a href="http://www.bogotobogo.com//python/NLTK/tf_idf_with_scikit-learn_NLTK.php">tf-idf</a> </li>
+
+</ul>
+<br>
+<br>
+
+
+</div>
+</div>
+<!-- search box and footer ad links -->
+
+
+<div class="AdLinksSmallFooter">
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4716428189734495";
+/* bogo_links_small_horizontal_footer */
+google_ad_slot = "4490165367";
+google_ad_width = 468;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/show_ads.js">
+</script>
+
+
+<br><br>
+</div>
+<div class="AdSenseSearchFooter">
+
+<br><br>
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-bottom" style="background-color:#999999;color:#000000">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/" id="cse-search-box">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-4716428189734495:5827297765">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="text" name="q" size="55">
+        <input type="submit" name="sa" value="Search">
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/poweredby_999999.gif" alt="Google">
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+
+
+
+<br><br>
+</div>
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43017326-1', 'bogotobogo.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+<div class="smallgraytext" id="footer">
+<a href="http://www.bogotobogo.com/index.php">Home</a>
+| <a href="http://www.bogotobogo.com/about_us.php">About Us</a>
+| <a href="http://www.bogotobogo.com/products.php">products</a>
+| <a href="http://www.bogotobogo.com/our_services.php">Our Services</a>
+| <a href="http://www.bogotobogo.com/about_us.php">Contact Us</a>
+| Bogotobogo © 2014 | 
+<a target="_blank" href="">Bogotobogo </a></div>
+</div></div>
+</div><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe id="_atssh81" title="AddThis utility frame" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/sh180.html" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px; left: 0px; top: 0px;"></iframe></div><script type="text/javascript" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/core165.js"></script>
+
+
+<br>
+<br>
+<br>
+
+<iframe name="oauth2relay361923761" id="oauth2relay361923761" src="./NLTK (Natural Language Toolkit) tokenization and tagging - 2014_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

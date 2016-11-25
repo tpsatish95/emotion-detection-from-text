@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0052)http://www.monlp.com/2011/11/08/part-of-speech-tags/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style></style>
+
+	<title>Part of Speech Tags « Natural Language Processing Musings</title>
+	<link rel="shortcut icon" href="http://www.monlp.com/wp-content/ata-images/blue_sq_A.ico">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://www.monlp.com/xmlrpc.php">
+<link rel="stylesheet" href="./Part of Speech Tags « Natural Language Processing Musings_files/saved_resource" type="text/css" media="all"><link rel="alternate" type="application/rss+xml" title="Natural Language Processing Musings » Feed" href="http://www.monlp.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Natural Language Processing Musings » Comments Feed" href="http://www.monlp.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Natural Language Processing Musings » Part of Speech Tags Comments Feed" href="http://www.monlp.com/2011/11/08/part-of-speech-tags/feed/">
+<link rel="stylesheet" id="xyz_cfm_short_code_style-css" href="./Part of Speech Tags « Natural Language Processing Musings_files/xyz_cfm_shortcode_style.css" type="text/css" media="all">
+<link rel="stylesheet" id="jquery-style-css" href="./Part of Speech Tags « Natural Language Processing Musings_files/jquery-ui.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpt-twitter-feed-css" href="./Part of Speech Tags « Natural Language Processing Musings_files/twitter-feed.css" type="text/css" media="all">
+<link rel="stylesheet" id="really_simple_share_style-css" href="./Part of Speech Tags « Natural Language Processing Musings_files/style.css" type="text/css" media="all">
+<script src="./Part of Speech Tags « Natural Language Processing Musings_files/cb=gapi.loaded_1" async=""></script><script src="./Part of Speech Tags « Natural Language Processing Musings_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Part of Speech Tags « Natural Language Processing Musings_files/plusone.js" gapi_processed="true"></script><script id="twitter-wjs" src="./Part of Speech Tags « Natural Language Processing Musings_files/widgets.js"></script><script type="text/javascript" src="./Part of Speech Tags « Natural Language Processing Musings_files/jquery.js"></script>
+<script type="text/javascript" src="./Part of Speech Tags « Natural Language Processing Musings_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Part of Speech Tags « Natural Language Processing Musings_files/DD_roundies.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.monlp.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.monlp.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Book Review: Python Text Processing with NLTK 2.0 Cookbook" href="http://www.monlp.com/2011/10/18/book-review-python-text-processing-with-nltk-2-0-cookbook/">
+<link rel="next" title="Book Review: Word Sense Disambiguation" href="http://www.monlp.com/2011/11/11/book-review-word-sense-disambiguation/">
+<link rel="canonical" href="./Part of Speech Tags « Natural Language Processing Musings_files/Part of Speech Tags « Natural Language Processing Musings.html">
+<link rel="shortlink" href="http://www.monlp.com/?p=100">
+<script type="text/javascript">
+        //<![CDATA[
+        
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+      
+      window.___gcfg = {lang: "en"};
+		  (function() {
+		    var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+		    po.src = "https://apis.google.com/js/plusone.js";
+		    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+		  })();
+      
+        //]]>
+  		</script>	<script type="text/javascript" src="./Part of Speech Tags « Natural Language Processing Musings_files/saved_resource(1)"></script>
+	
+<!--[if IE 6]>
+<script type="text/javascript">DD_roundies.addRule("a.posts-icon, a.comments-icon, a.email-icon, img.logo");</script>
+<![endif]-->
+</head>
+<body class="single single-post postid-100 single-format-standard" data-twttr-rendered="true">
+
+<div id="wrapper">
+<div id="container">
+<table id="layout" border="0" cellspacing="0" cellpadding="0">
+<colgroup>
+<col class="colone"><col class="coltwo">
+<col class="colthree"></colgroup> 
+
+
+	<tbody><tr>
+
+		<!-- Header -->
+		<td id="header" colspan="3">
+
+		<table id="logoarea" cellpadding="0" cellspacing="0" border="0" width="100%"><tbody><tr><td valign="middle" class="logoarea-title"><h2 class="blogtitle"><a href="http://www.monlp.com/">Natural Language Processing Musings</a></h2><p class="tagline">Code and Commentary</p></td><td valign="bottom" class="search-box" align="right"><div class="searchbox">
+					<form method="get" class="searchform" action="http://www.monlp.com/">
+					<div class="searchbox-form"><input type="text" class="text inputblur" onfocus="this.value=&#39;&#39;" value="search text" onblur="this.value=&#39;search text&#39;" name="s"></div>
+					</form>
+				</div>
+				</td></tr></tbody></table> <div id="menu1" class="menu-top_menu_nlp-container"><ul id="rmenu2" class="clearfix rMenu-hor rMenu"><li id="menu-item-239" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-239"><a href="http://www.monlp.com/"><span>Home</span></a></li>
+<li id="menu-item-237" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-237"><a href="http://www.monlp.com/books/"><span>Books</span></a></li>
+<li id="menu-item-236" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-236"><a href="http://www.monlp.com/about/"><span>About</span></a></li>
+<li id="menu-item-238" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-238"><a href="http://www.monlp.com/contact/"><span>Contact</span></a></li>
+</ul></div> <div class="horbar1">&nbsp;</div>
+		</td>
+		<!-- / Header -->
+
+	</tr>
+	<!-- Main Body -->	
+	<tr id="bodyrow">
+
+				<!-- Left Sidebar -->
+		<td id="left">
+
+					<div id="recent-posts-3" class="widget widget_recent_entries">		<div class="widget-title"><h3>Recent Posts</h3></div>		<ul>
+					<li>
+				<a href="http://www.monlp.com/2014/02/26/announcing-mr-web-hound/">Announcing Mr Web Hound!</a>
+						</li>
+					<li>
+				<a href="http://www.monlp.com/2013/06/13/running-the-charniak-johnson-parser-from-python/">Running the Charniak-Johnson Parser from Python</a>
+						</li>
+					<li>
+				<a href="http://www.monlp.com/2013/01/15/nltk-alpha-for-python-3-released/">NLTK (alpha) for Python 3 Released</a>
+						</li>
+					<li>
+				<a href="http://www.monlp.com/2012/12/14/extracting-body-content-from-a-web-page-in-net/">Extracting Body content from a Web Page using .NET</a>
+						</li>
+					<li>
+				<a href="http://www.monlp.com/2012/12/04/extracting-body-content-from-a-web-page/">Extracting Body Content from a Web Page</a>
+						</li>
+					<li>
+				<a href="http://www.monlp.com/2012/08/24/nltk-on-the-raspberry-pi/">NLTK on the Raspberry PI</a>
+						</li>
+				</ul>
+		</div><div id="flexipages-2" class="widget flexipages_widget"><div class="widget-title"><h3>Pages</h3></div>
+<ul>
+	<li class="home_page"><a href="http://www.monlp.com/" title="Home">Home</a></li>
+	<li class="page_item page-item-57"><a href="http://www.monlp.com/books/" title="Books">Books</a></li>
+</ul>
+</div><div id="categories-3" class="widget widget_categories"><div class="widget-title"><h3>Categories</h3></div>		<ul>
+	<li class="cat-item cat-item-3"><a href="http://www.monlp.com/category/administration/">Administration</a> (1)
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.monlp.com/category/book-reviews/">Book Reviews</a> (5)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.monlp.com/category/external-sites/">External sites</a> (2)
+</li>
+	<li class="cat-item cat-item-33"><a href="http://www.monlp.com/category/how-to/">How To</a> (13)
+</li>
+	<li class="cat-item cat-item-46"><a href="http://www.monlp.com/category/news/">News</a> (3)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://www.monlp.com/category/nltk/">NLTK</a> (11)
+</li>
+	<li class="cat-item cat-item-13"><a href="http://www.monlp.com/category/overview/">Overview</a> (2)
+</li>
+	<li class="cat-item cat-item-1"><a href="http://www.monlp.com/category/uncategorized/">Uncategorized</a> (3)
+</li>
+		</ul>
+</div>
+		</td>
+		<!-- / Left Sidebar -->
+		
+				
+
+		<!-- Main Column -->
+		<td id="middle">
+
+    
+		
+		
+				<div class="clearfix navigation-top">
+		<div class="older">« <a href="http://www.monlp.com/2011/11/11/book-review-word-sense-disambiguation/" rel="next">Book Review: Word Sense Disambiguation</a> &nbsp;</div><div class="newer">&nbsp; <a href="http://www.monlp.com/2011/10/18/book-review-python-text-processing-with-nltk-2-0-cookbook/" rel="prev">Book Review: Python Text Processing with NLTK 2.0 Cookbook</a> »</div></div>				<div class="post-100 post type-post status-publish format-standard hentry category-uncategorized tag-brown tag-corpora tag-pos-tags tag-treebank odd" id="post-100">
+						<div class="post-headline"><h1>Part of Speech Tags</h1></div>		<div class="post-byline">By Richard Marsden, on November 8th, 2011</div>		<div class="post-bodycopy clearfix"><div style="min-height:33px;" class="really_simple_share really_simple_share_button robots-nocontent snap_nopreview"><div class="really_simple_share_specificfeeds_follow" style="width:110px;"><a href="http://www.specificfeeds.com/follow" target="_blank"><img src="./Part of Speech Tags « Natural Language Processing Musings_files/specificfeeds_follow.png" alt="Email, RSS" title="Email, RSS"> Follow</a></div><div class="really_simple_share_facebook_like" style="width:90px;"><div class="fb-like" data-href="http://www.monlp.com/2011/11/08/part-of-speech-tags/" data-layout="button_count" data-width="90"></div></div><div class="really_simple_share_google1" style="width:75px;"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1418403887086" name="I0_1418403887086" src="./Part of Speech Tags « Natural Language Processing Musings_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div></div><div class="really_simple_share_twitter" style="width:90px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./Part of Speech Tags « Natural Language Processing Musings_files/tweet_button.ff7d9077a26377d36b6a53b1a95be617.en.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 106px; height: 20px;"></iframe></div></div>
+		<div class="really_simple_share_clearfix"></div><p style="text-align: left;">A frequently asked question is “<em>What do the Part of Speech tags (VB, JJ, etc) mean?</em>” The bottom line is that these tags mean whatever they meant in your original training data. You are free to invent your own tags in your training data, as long as you are consistent in their usage.</p>
+<p style="text-align: left;">Training data generally takes a lot of work to create, so a pre-existing corpus is typically used. These usually use the <strong>Penn Treebank</strong> or <strong>Brown Corpus</strong> tags.</p>
+<p style="text-align: left;"><span id="more-100"></span>The most common part of speech (POS) tag schemes are those developed for the Penn Treebank and Brown Corpus. Penn Treebank is probably the most common, but both corpora are available with NLTK.</p>
+<h4>Penn Treebank POS Tags</h4>
+<p>Here are the POS tags used in the Penn Treebank:</p>
+<table width="100%" border="2" cellspacing="2">
+<tbody>
+<tr class="alt">
+<th>POS Tag</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+<tr class="">
+<td>CC</td>
+<td>coordinating conjunction</td>
+<td>and</td>
+</tr>
+<tr class="alt">
+<td>CD</td>
+<td>cardinal number</td>
+<td>1, third</td>
+</tr>
+<tr class="">
+<td>DT</td>
+<td>determiner</td>
+<td>the</td>
+</tr>
+<tr class="alt">
+<td>EX</td>
+<td>existential there</td>
+<td><em>there</em> is</td>
+</tr>
+<tr class="">
+<td>FW</td>
+<td>foreign word</td>
+<td>d’hoevre</td>
+</tr>
+<tr class="alt">
+<td>IN</td>
+<td>preposition/subordinating conjunction</td>
+<td>in, of, like</td>
+</tr>
+<tr class="">
+<td>JJ</td>
+<td>adjective</td>
+<td>big</td>
+</tr>
+<tr class="alt">
+<td>JJR</td>
+<td>adjective, comparative</td>
+<td>bigger</td>
+</tr>
+<tr class="">
+<td>JJS</td>
+<td>adjective, superlative</td>
+<td>biggest</td>
+</tr>
+<tr class="alt">
+<td>LS</td>
+<td>list marker</td>
+<td>1)</td>
+</tr>
+<tr class="">
+<td>MD</td>
+<td>modal</td>
+<td>could, will</td>
+</tr>
+<tr class="alt">
+<td>NN</td>
+<td>noun, singular or mass</td>
+<td>door</td>
+</tr>
+<tr class="">
+<td>NNS</td>
+<td>noun plural</td>
+<td>doors</td>
+</tr>
+<tr class="alt over">
+<td>NNP</td>
+<td>proper noun, singular</td>
+<td>John</td>
+</tr>
+<tr class="">
+<td>NNPS</td>
+<td>proper noun, plural</td>
+<td>Vikings</td>
+</tr>
+<tr class="alt">
+<td>PDT</td>
+<td>predeterminer</td>
+<td><em>both</em> the boys</td>
+</tr>
+<tr class="">
+<td>POS</td>
+<td>possessive ending</td>
+<td>friend<em>‘s</em></td>
+</tr>
+<tr class="alt">
+<td>PRP</td>
+<td>personal pronoun</td>
+<td>I, he, it</td>
+</tr>
+<tr class="">
+<td>PRP$</td>
+<td>possessive pronoun</td>
+<td>my, his</td>
+</tr>
+<tr class="alt">
+<td>RB</td>
+<td>adverb</td>
+<td>however, usually, naturally, here, good</td>
+</tr>
+<tr class="">
+<td>RBR</td>
+<td>adverb, comparative</td>
+<td>better</td>
+</tr>
+<tr class="alt">
+<td>RBS</td>
+<td>adverb, superlative</td>
+<td>best</td>
+</tr>
+<tr class="">
+<td>RP</td>
+<td>particle</td>
+<td>give <em> up </em></td>
+</tr>
+<tr class="alt">
+<td>TO</td>
+<td>to</td>
+<td><em>to</em> go, <em>to</em> him</td>
+</tr>
+<tr class="">
+<td>UH</td>
+<td>interjection</td>
+<td>uhhuhhuhh</td>
+</tr>
+<tr class="alt">
+<td>VB</td>
+<td>verb, base form</td>
+<td>take</td>
+</tr>
+<tr class="">
+<td>VBD</td>
+<td>verb, past tense</td>
+<td>took</td>
+</tr>
+<tr class="alt">
+<td>VBG</td>
+<td>verb, gerund/present participle</td>
+<td>taking</td>
+</tr>
+<tr class="">
+<td>VBN</td>
+<td>verb, past participle</td>
+<td>taken</td>
+</tr>
+<tr class="alt">
+<td>VBP</td>
+<td>verb, sing. present, non-3d</td>
+<td>take</td>
+</tr>
+<tr>
+<td>VBZ</td>
+<td>verb, 3rd person sing. present</td>
+<td>takes</td>
+</tr>
+<tr class="alt">
+<td>WDT</td>
+<td>wh-determiner</td>
+<td>which</td>
+</tr>
+<tr>
+<td>WP</td>
+<td>wh-pronoun</td>
+<td>who, what</td>
+</tr>
+<tr class="alt">
+<td>WP$</td>
+<td>possessive wh-pronoun</td>
+<td>whose</td>
+</tr>
+<tr class="">
+<td>WRB</td>
+<td>wh-abverb</td>
+<td>where, when</td>
+</tr>
+</tbody>
+</table>
+<p>The official annotation guidelines including full descriptions can be found <a title="Penn Treebank POS Tag Guide (compressed ps file)" href="ftp://ftp.cis.upenn.edu/pub/treebank/doc/tagguide.ps.gz" target="_blank">here</a> (GZip-compressed Postscript file). This includes confusing parts of speech, capitalization, and other conventions.</p>
+<p>&nbsp;</p>
+<h4>Brown Corpus POS Tags</h4>
+<p>The Brown Corpus POS tags are very similar, and there is the potential for some confusion. However, there are differences. For example, the Penn Treebank has three types of adjective (JJ, JJR, JJS) but the Brown Corpus divides JJS into JJS and JJT.</p>
+<p>The Brown Corpus also has rules for combining tags. For example, the colloquial “wanna” means “want to” and is tagged “VB+TO” (“want/VB to/TO”). Similarly, a suffix asterisk indicates a negative, so that “aren’t” becomes “BER*”.</p>
+<p>The <a href="http://khnt.aksis.uib.no/icame/manuals/brown/" target="_blank">Brown Corpus manual</a> is available <a href="http://khnt.aksis.uib.no/icame/manuals/brown/" target="_blank">here</a>,and useful summaries can be found at the <a href="http://www.scs.leeds.ac.uk/ccalas/tagsets/brown.html" target="_blank">University of Leeds</a> and at <a title="Wikipedia page for the Brown Corpus and POS tags" href="http://en.wikipedia.org/wiki/Brown_Corpus" target="_blank">Wikipedia</a>.</p>
+</div>						<div class="post-footer">November 8th, 2011 | Tags: <a href="http://www.monlp.com/tag/brown/" rel="tag">brown</a>, <a href="http://www.monlp.com/tag/corpora/" rel="tag">corpora</a>, <a href="http://www.monlp.com/tag/pos-tags/" rel="tag">POS tags</a>, <a href="http://www.monlp.com/tag/treebank/" rel="tag">treebank</a> |  Category: <a href="http://www.monlp.com/category/uncategorized/" rel="category tag">Uncategorized</a> </div>		</div><!-- / Post -->	
+						
+	
+			
+
+	<a name="comments"></a><!-- named anchor for skip links -->
+	<h3 id="comments">2 comments to Part of Speech Tags</h3>
+
+	
+	<!-- Comment List -->
+	<ul class="commentlist">
+		
+			<li class="comment even thread-even depth-1 clearfix" id="comment-393">
+		<div id="div-comment-393" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img alt="" src="./Part of Speech Tags « Natural Language Processing Musings_files/8011f3c034b4f7cd9634ee1eb563eceb" class="avatar avatar-55 photo" height="55" width="55">		<span class="authorname">Subhan Ullah</span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.monlp.com/2011/11/08/part-of-speech-tags/#comment-393">
+		November 2, 2013 at 4:52 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.monlp.com/2011/11/08/part-of-speech-tags/?replytocom=393#respond" onclick="return addComment.moveForm(&quot;comment-393&quot;, &quot;393&quot;, &quot;respond&quot;, &quot;100&quot;)"> · Reply</a></span>		 
+		</div>
+		<p>How i can use the NLP for the POS in PHP</p>
+		</div>
+<ul class="children">
+		<li class="comment byuser comment-author-richard bypostauthor odd alt depth-2 clearfix" id="comment-394">
+		<div id="div-comment-394" class="clearfix comment-container bypostauthor">
+		<div class="comment-author vcard">
+		<img alt="" src="./Part of Speech Tags « Natural Language Processing Musings_files/944c7f2e8182b12ac555ebf253579f34" class="avatar avatar-55 photo" height="55" width="55">		<span class="authorname"><a href="http://monlp.com/" rel="external nofollow" class="url">Richard Marsden</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.monlp.com/2011/11/08/part-of-speech-tags/#comment-394">
+		November 2, 2013 at 7:58 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.monlp.com/2011/11/08/part-of-speech-tags/?replytocom=394#respond" onclick="return addComment.moveForm(&quot;comment-394&quot;, &quot;394&quot;, &quot;respond&quot;, &quot;100&quot;)"> · Reply</a></span>		 
+		</div>
+		<p>You would need to find an NLP library for PHP. PHP isn’t really designed for things like computer learning and NLP type processing – I would use a different library, and call that from PHP. E.g. NLTK in Python or Stanford NLP for Java.</p>
+		</div>
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	
+	</ul>
+	<!-- / Comment List -->
+
+	
+
+
+
+								<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.monlp.com/2011/11/08/part-of-speech-tags/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://www.monlp.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<p><input class="text author" id="author" name="author" type="text" value="" size="30" tabindex="1">&nbsp;&nbsp;<label for="author"><strong>Name </strong> (required)</label></p>
+<p><input class="text email" id="email" name="email" type="text" value="" size="30" tabindex="2">&nbsp;&nbsp;<label for="email"><strong>Email</strong> (will not be published) (required)</label></p>
+<p><input class="text url" id="url" name="url" type="text" value="" size="30" tabindex="3">&nbsp;&nbsp;<label for="url">Website</label></p>
+												<p><textarea name="comment" id="comment" rows="10" cols="10" tabindex="4"></textarea></p>						
+		<p class="thesetags clearfix">You can use <a class="xhtmltags" href="http://www.monlp.com/2011/11/08/part-of-speech-tags/#" onclick="return false;">these HTML tags</a></p>
+		<div class="xhtml-tags"><p><code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; 
+		</code></p></div>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="100" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="fc99ba8de0"></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="82"></p>					</form>
+							</div><!-- #respond -->
+					
+    
+
+</td>
+<!-- / Main Column -->
+
+<!-- Right Inner Sidebar -->
+
+<!-- Right Sidebar -->
+<td id="right">
+
+	<div id="text-3" class="widget widget_text">			<div class="textwidget"><a href="http://twitter.com/#!/NLPMusings"><img src="./Part of Speech Tags « Natural Language Processing Musings_files/twitter_icon.png" style="vertical-align:middle">&nbsp;&nbsp;@NLPMusings</a><br>
+<a href="http://www.monlp.com/feed/"><img src="./Part of Speech Tags « Natural Language Processing Musings_files/post-feed.gif" style="vertical-align:middle">&nbsp;&nbsp;RSS Feed</a>
+</div>
+		</div><style scoped="" type="text/css">.utcw-9gafnpm {word-wrap:break-word}.utcw-9gafnpm span,.utcw-9gafnpm a{border-width:0px}.utcw-9gafnpm span:hover,.utcw-9gafnpm a:hover{border-width:0px}</style><div id="utcw-3" class="widget widget_utcw widget_tag_cloud"><div class="widget-title"><h3>Tag Cloud</h3></div><div class="utcw-9gafnpm tagcloud"><a class="tag-link-60 utcw-tag utcw-tag-pcfg" href="http://www.monlp.com/tag/pcfg/" style="font-size:10px">PCFG</a> <a class="tag-link-59 utcw-tag utcw-tag-charniak" href="http://www.monlp.com/tag/charniak/" style="font-size:10px">charniak</a> <a class="tag-link-56 utcw-tag utcw-tag-nboilerpipe" href="http://www.monlp.com/tag/nboilerpipe/" style="font-size:10px">nboilerpipe</a> <a class="tag-link-58 utcw-tag utcw-tag-net" href="http://www.monlp.com/tag/net/" style="font-size:10px">.net</a> <a class="tag-link-20 utcw-tag utcw-tag-scipy" href="http://www.monlp.com/tag/scipy/" style="font-size:10px">scipy</a> <a class="tag-link-19 utcw-tag utcw-tag-maximum-entropy" href="http://www.monlp.com/tag/maximum-entropy/" style="font-size:10px">maximum entropy</a> <a class="tag-link-16 utcw-tag utcw-tag-chunking" href="http://www.monlp.com/tag/chunking/" style="font-size:10px">chunking</a> <a class="tag-link-30 utcw-tag utcw-tag-display" href="http://www.monlp.com/tag/display/" style="font-size:10px">display</a> <a class="tag-link-32 utcw-tag utcw-tag-courses" href="http://www.monlp.com/tag/courses/" style="font-size:10px">courses</a> <a class="tag-link-31 utcw-tag utcw-tag-stanford" href="http://www.monlp.com/tag/stanford/" style="font-size:10px">Stanford</a> <a class="tag-link-51 utcw-tag utcw-tag-punctuation" href="http://www.monlp.com/tag/punctuation/" style="font-size:10px">punctuation</a> <a class="tag-link-53 utcw-tag utcw-tag-education" href="http://www.monlp.com/tag/education/" style="font-size:10px">education</a> <a class="tag-link-47 utcw-tag utcw-tag-berkeleydb" href="http://www.monlp.com/tag/berkeleydb/" style="font-size:10px">BerkeleyDB</a> <a class="tag-link-44 utcw-tag utcw-tag-wikipedia" href="http://www.monlp.com/tag/wikipedia/" style="font-size:10px">wikipedia</a> <a class="tag-link-62 utcw-tag utcw-tag-mrwebhound" href="http://www.monlp.com/tag/mrwebhound/" style="font-size:10px">mrwebhound</a> <a class="tag-link-45 utcw-tag utcw-tag-statistics" href="http://www.monlp.com/tag/statistics/" style="font-size:10px">statistics</a> <a class="tag-link-27 utcw-tag utcw-tag-timbl" href="http://www.monlp.com/tag/timbl/" style="font-size:10px">TiMBL</a> <a class="tag-link-63 utcw-tag utcw-tag-beta" href="http://www.monlp.com/tag/beta/" style="font-size:10px">beta</a> <a class="tag-link-26 utcw-tag utcw-tag-disambiguation" href="http://www.monlp.com/tag/disambiguation/" style="font-size:10px">disambiguation</a> <a class="tag-link-23 utcw-tag utcw-tag-treebank" href="http://www.monlp.com/tag/treebank/" style="font-size:10px">treebank</a> <a class="tag-link-5 utcw-tag utcw-tag-introduction" href="http://www.monlp.com/tag/introduction/" style="font-size:10px">introduction</a> <a class="tag-link-39 utcw-tag utcw-tag-gutenberg" href="http://www.monlp.com/tag/gutenberg/" style="font-size:10px">gutenberg</a> <a class="tag-link-4 utcw-tag utcw-tag-admin" href="http://www.monlp.com/tag/admin/" style="font-size:10px">admin</a> <a class="tag-link-38 utcw-tag utcw-tag-regex" href="http://www.monlp.com/tag/regex/" style="font-size:10px">regex</a> <a class="tag-link-57 utcw-tag utcw-tag-c" href="http://www.monlp.com/tag/c/" style="font-size:10px">c#</a> <a class="tag-link-37 utcw-tag utcw-tag-classification" href="http://www.monlp.com/tag/classification/" style="font-size:10px">classification</a> <a class="tag-link-61 utcw-tag utcw-tag-plagiarism" href="http://www.monlp.com/tag/plagiarism/" style="font-size:10px">plagiarism</a> <a class="tag-link-24 utcw-tag utcw-tag-brown" href="http://www.monlp.com/tag/brown/" style="font-size:10px">brown</a> <a class="tag-link-34 utcw-tag utcw-tag-segmentation" href="http://www.monlp.com/tag/segmentation/" style="font-size:11.555555555556px">segmentation</a> <a class="tag-link-28 utcw-tag utcw-tag-trees" href="http://www.monlp.com/tag/trees/" style="font-size:11.555555555556px">trees</a> <a class="tag-link-36 utcw-tag utcw-tag-naive-bayes" href="http://www.monlp.com/tag/naive-bayes/" style="font-size:11.555555555556px">Naive Bayes</a> <a class="tag-link-35 utcw-tag utcw-tag-sentences" href="http://www.monlp.com/tag/sentences/" style="font-size:11.555555555556px">sentences</a> <a class="tag-link-18 utcw-tag utcw-tag-grammar" href="http://www.monlp.com/tag/grammar/" style="font-size:11.555555555556px">grammar</a> <a class="tag-link-29 utcw-tag utcw-tag-parsing" href="http://www.monlp.com/tag/parsing/" style="font-size:11.555555555556px">parsing</a> <a class="tag-link-54 utcw-tag utcw-tag-boilerpipe" href="http://www.monlp.com/tag/boilerpipe/" style="font-size:11.555555555556px">boilerpipe</a> <a class="tag-link-55 utcw-tag utcw-tag-html" href="http://www.monlp.com/tag/html/" style="font-size:11.555555555556px">html</a> <a class="tag-link-15 utcw-tag utcw-tag-pos-tags" href="http://www.monlp.com/tag/pos-tags/" style="font-size:11.555555555556px">POS tags</a> <a class="tag-link-21 utcw-tag utcw-tag-nlp" href="http://www.monlp.com/tag/nlp/" style="font-size:13.111111111111px">nlp</a> <a class="tag-link-25 utcw-tag utcw-tag-corpora" href="http://www.monlp.com/tag/corpora/" style="font-size:13.111111111111px">corpora</a> <a class="tag-link-14 utcw-tag utcw-tag-tokenization" href="http://www.monlp.com/tag/tokenization/" style="font-size:13.111111111111px">tokenization</a> <a class="tag-link-41 utcw-tag utcw-tag-word-frequency" href="http://www.monlp.com/tag/word-frequency/" style="font-size:14.666666666667px">word frequency</a> <a class="tag-link-43 utcw-tag utcw-tag-n-gram" href="http://www.monlp.com/tag/n-gram/" style="font-size:16.222222222222px">n-gram</a> <a class="tag-link-12 utcw-tag utcw-tag-books" href="http://www.monlp.com/tag/books/" style="font-size:16.222222222222px">books</a> <a class="tag-link-8 utcw-tag utcw-tag-nltk" href="http://www.monlp.com/tag/nltk/" style="font-size:24px">NLTK</a> <a class="tag-link-9 utcw-tag utcw-tag-python" href="http://www.monlp.com/tag/python/" style="font-size:24px">python</a></div></div><div id="linkcat-2" class="widget widget_links"><div class="widget-title"><h3>Blogroll</h3></div>
+	<ul class="xoxo blogroll">
+<li><a href="https://www.coursera.org/course/nlp" title="Coursera’s excellent NLP course presented by Dan Jurafsky and Christopher Manning" target="_blank">Coursera NLP</a></li>
+<li><a href="http://www.nltk.org/news-archive" title="Latest news about the Natural Language Toolkit for Python" target="_blank">NLTK News</a></li>
+<li><a href="http://planet.python.org/" title="Python blog aggregator" target="_blank">Planet Python</a></li>
+<li><a href="http://streamhacker.com/" title="Jacob Perkin’s blog (author of the NLTK 2.0 Cookbook)" target="_blank">StreamHacker</a></li>
+
+	</ul>
+</div>
+
+</td>
+<!-- / Right Sidebar -->
+
+</tr>
+<!-- / Main Body -->
+
+
+</tbody></table><!-- / layout -->
+</div><!-- / container -->
+</div><!-- / wrapper -->
+
+
+
+<!-- Dynamic page generated in 0.542 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2014-12-12 10:11:59 -->
+
+<!-- Compression = gzip --><iframe name="oauth2relay447553721" id="oauth2relay447553721" src="./Part of Speech Tags « Natural Language Processing Musings_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

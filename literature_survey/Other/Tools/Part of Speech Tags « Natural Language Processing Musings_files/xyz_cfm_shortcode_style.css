@@ -1,0 +1,133 @@
+@CHARSET "UTF-8";
+
+/*Calander*/
+
+table.calendar {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 0.8em;
+	border-collapse: collapse;
+	background-color: white;
+	border: solid #999999 1px;
+	background-color: white;
+	width: 205px;
+	text-align: center;
+	-moz-user-select: none;
+}
+
+table.calendar input,table.calendar select {
+	font-size: 10px;
+}
+
+table.calendar td {
+	border: 0;
+	font-size: 10px;
+	text-align: center;
+}
+
+div.mainheading {
+	margin: 2px;
+}
+
+table.caldayheading {
+	border-collapse: collapse;
+	cursor: pointer;
+	empty-cells: show;
+	margin: 0 6px 0 6px;
+}
+
+table.caldayheading td {
+	border: solid #CCCCCC 1px;
+	text-align: left;
+	color: #0054E3;
+	font-weight: bold;
+	width: 22px;
+}
+
+table.caldayheading td.wkhead {
+	border-right: double #CCCCCC 3px;
+}
+
+table.calcells {
+	border-collapse: collapse;
+	cursor: pointer;
+	margin: 0 6px 0 6px;
+}
+
+table.calcells td {
+	border: solid #CCCCCC 1px;
+	vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+	width: 22px;
+	height: 20px;
+}
+
+table.calcells td div {
+	padding: 1px;
+	margin: 0;
+}
+
+table.calcells td.wkhead {
+	background-color: white;
+	text-align: center;
+	border-right: double #CCCCCC 3px;
+	color: #0054E3;
+}
+
+table.calcells td.wkday {
+	background-color: #7E7777;
+}
+
+table.calcells td.wkend {
+	background-color: #7E7777;
+}
+
+table.calcells td.curdate {
+	
+}
+
+table.calcells td.cell_selected {
+	background-color: #99CCFF;
+	color: black;
+}
+
+table.calcells td.notmnth {
+	background-color: #FFFFFF;
+	color: #CCCCCC;
+}
+
+table.calcells td.notallowed {
+	background-color: white;
+	color: #EEEEEE;
+	font-style: italic;
+}
+
+table.calcells td.hover {
+	background-color: #999999;
+}
+
+/*file*/
+.informationdiv {
+	z-index: 1200;
+	position: absolute;
+	float: left;
+	background: none repeat scroll 0 0 #9FDAEE;
+	border: 1px solid #209BD4;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+}
+
+/**/
+
+.textAreaStyle {
+	/*width: 350px;*/
+}
+
+.tableBorder {
+	
+}
+
+.tableBorder td {
+	
+}

@@ -1,0 +1,29 @@
+Train set Duplicates:
+
+	joy: 2931
+	anger: 10142
+	sadness: 7707
+	love: 2079
+	fear: 1728
+	surprise: 12112
+Total Duplicates Train: 36699 of 352124
+Total Unique Train: 315396
+
+Test set Duplicates:
+	joy: 15328
+	anger: 3216
+	sadness: 697
+	love: 5
+	fear: 571
+	surprise: 235
+Total Duplicates Test : 20052 of 159693
+Total Unique Test: 139634
+
+
+Tweets common to Test and Train: 1492
+
+Total Tweets in dataset:
+453538
+Total Unique Tweets in dataset:
+452046
+

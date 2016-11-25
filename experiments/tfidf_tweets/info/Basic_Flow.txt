@@ -1,0 +1,6 @@
+Download Tweets
+Process Them
+Do some Pre-Processing - 7 Filters
+Extract features using a sparse vectorizer - TF-IDF Vectorizer
+Extracting K best features - chi-squared test
+Train the ML algo - LinearSVC

@@ -1,0 +1,131 @@
+A 99% accuracy.
+=========================================================
+data loaded
+352124 documents - 25.571MB (training set)
+159693 documents - 11.708MB (test set)
+6 categories
+
+Extracting features from the training data using a sparse vectorizer
+n_samples: 352124, n_features: 184609
+
+Extracting features from the test data using the same vectorizer
+n_samples: 159693, n_features: 184609
+
+Extracting 3500 best features by a chi-squared test
+done in 0.875601s
+
+================================================================================
+L2 penalty - LinearSVC
+________________________________________________________________________________
+Training: 
+LinearSVC(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='l2', multi_class='ovr', penalty='l2',
+     random_state=None, tol=0.001, verbose=0)
+train time: 4.092s
+test time:  0.049s
+accuracy:   0.992
+dimensionality: 3500
+density: 1.000000
+
+Top 10 keywords per class:
+
+anger: b'irritating frustration frustrating disgusted irritated disgusting ra...
+fear: b'uneasy panicking worrying fear tense panic anxiety worried anxious ne...
+joy: b'jolly pride excitement joy exciting happiness bliss happy proud excited'
+love: b'jlo thanksgiving islam lovin affection birthday loving adoration repe...
+sadness: b'disappointing embarrassed disappointment lonely homesick depressin...
+surprise: b'labradoodle backdoor chandlerduff 2011movies totallydifferent ast...
+
+classification report:
+             precision    recall  f1-score   support
+
+      anger       1.00      1.00      1.00     37514
+       fear       0.99      1.00      0.99      9360
+        joy       0.99      0.99      0.99     49030
+       love       0.98      0.98      0.98     20427
+    sadness       1.00      1.00      1.00     41672
+   surprise       0.93      1.00      0.96      1690
+
+avg / total       0.99      0.99      0.99    159693
+
+confusion matrix:
+[[37455     3     6    15    31     4]
+ [    6  9343     2     3     4     2]
+ [   24    48 48439   359    87    73]
+ [   15    21   244 20042    79    26]
+ [   47    27    33    60 41491    14]
+ [    0     1     1     1     1  1686]]
+
+================================================================================
+L1 penalty - LinearSVC
+________________________________________________________________________________
+Training: 
+LinearSVC(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='l2', multi_class='ovr', penalty='l1',
+     random_state=None, tol=0.001, verbose=0)
+train time: 4.878s
+test time:  0.031s
+accuracy:   0.993
+dimensionality: 3500
+density: 0.206000
+
+Top 10 keywords per class:
+
+anger: b'irritating frustrating frustration disgusted disgusting irritated ra...
+fear: b'uneasy panicking fear worrying tense panic anxiety worried anxious ne...
+joy: b'pride joy euphoria excitement exciting happiness bliss happy proud exc...
+love: b'affection lovin birthday loving moreno islam datingdiva repetition ad...
+sadness: b'disappointing lonely embarrassed disappointment depressing depress...
+surprise: b'labradoodle chandlerduff kattie 2011movies astonishment totallydi...
+
+classification report:
+             precision    recall  f1-score   support
+
+      anger       1.00      1.00      1.00     37514
+       fear       0.99      1.00      0.99      9360
+        joy       0.99      0.99      0.99     49030
+       love       0.98      0.98      0.98     20427
+    sadness       1.00      1.00      1.00     41672
+   surprise       0.94      1.00      0.97      1690
+
+avg / total       0.99      0.99      0.99    159693
+
+confusion matrix:
+[[37462     3     5    13    28     3]
+ [    7  9341     2     5     3     2]
+ [   26    46 48453   357    87    61]
+ [   15    20   230 20062    76    24]
+ [   44    23    27    65 41504     9]
+ [    1     1     1     1     3  1683]]
+
+================================================================================
+LinearSVC with L1-based feature selection
+________________________________________________________________________________
+Training: 
+Pipeline(steps=[('feature_selection', LinearSVC(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='l2', multi_class='ovr', penalty='l1',
+     random_state=None, tol=0.001, verbose=0)), ('classification', LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss='l2', multi_class='ovr', penalty='l2',
+     random_state=None, tol=0.0001, verbose=0))])
+train time: 10.222s
+test time:  0.140s
+accuracy:   0.992
+classification report:
+             precision    recall  f1-score   support
+
+      anger       1.00      1.00      1.00     37514
+       fear       0.99      1.00      0.99      9360
+        joy       0.99      0.99      0.99     49030
+       love       0.98      0.98      0.98     20427
+    sadness       1.00      1.00      1.00     41672
+   surprise       0.94      1.00      0.97      1690
+
+avg / total       0.99      0.99      0.99    159693
+
+confusion matrix:
+[[37462     3     6    14    26     3]
+ [    6  9343     2     4     3     2]
+ [   26    48 48424   369    91    72]
+ [   15    21   238 20050    78    25]
+ [   50    27    29    63 41490    13]
+ [    0     1     1     1     1  1686]]

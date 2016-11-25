@@ -1,0 +1,5 @@
+Pre-Preocessing,Classifier,Train Docs(Count),Test Docs(Count),Train Error,Test Error
+Yes,LinearSVC,313936,138174,5.47245298405 %,9.3295410135 %
+Yes,LogisticRegression,313936,138174,7.16292492737 %,8.75200833731 %
+No,LinearSVC,318327,140287,0.111520543341 %,0.767711904881 %
+No,LogisticRegression,318327,140287,0.342415189412 %,0.737773279064 %

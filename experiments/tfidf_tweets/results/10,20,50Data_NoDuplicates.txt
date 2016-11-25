@@ -1,0 +1,170 @@
+With 10 Percent of Training Data !!
+================================================================================
+
+34733
+Data loaded.....
+34733 documents - 2.198MB (training set)
+139302 documents - 8.885MB (test set)
+6 categories
+
+Extracting features from the training data using a sparse vectorizer
+done in 0.833203s at 2.638MB/s
+n_samples: 34733, n_features: 18236
+
+Extracting features from the test data using the same vectorizer
+done in 3.027608s at 2.935MB/s
+n_samples: 139302, n_features: 18236
+
+Extracting 3500 best features by a chi-squared test
+done in 0.234000s
+
+================================================================================
+L2 penalty
+________________________________________________________________________________
+accuracy:   0.907
+dimensionality: 3500
+density: 1.000000
+
+Top 10 keywords per class:
+
+anger: b'wrath anger furi outrag angri irrit rage disgust frustrat annoy'
+fear: b'recov nervous uneasi panick tens anxieti panic worri anxiou nervou'
+joy: b'euphoria elat thrill jolli delight pride happi bliss proud excit'
+love: b'kellyclarkson grin anniversari initi be julian duh newmus nosi volunt...
+sadness: b'miseri unhappi neglect hurt homesick sad lone depress embarrass di...
+surprise: b'frequenc meeeeeee rutger waytob yardwork givingisbetterthanget le...
+
+classification report:
+             precision    recall  f1-score   support
+
+      anger       0.99      0.99      0.99     34265
+       fear       0.98      0.98      0.98      9095
+        joy       0.95      0.94      0.95     33586
+       love       0.68      0.86      0.76     19742
+    sadness       0.95      0.84      0.89     40932
+   surprise       0.42      0.36      0.39      1682
+
+avg / total       0.92      0.91      0.91    139302
+
+confusion matrix:
+[[34028     9    21   107    83    17]
+ [    8  8913    17   109    40     8]
+ [   22    56 31650  1528   240    90]
+ [  110    67  1195 16886  1241   243]
+ [  197    84   374  5472 34310   495]
+ [    7     5   103   708   248   611]]
+
+With 20 Percent of Training Data !!
+================================================================================
+
+
+69421
+Data loaded.....
+69421 documents - 4.387MB (training set)
+139074 documents - 8.874MB (test set)
+6 categories
+
+Extracting features from the training data using a sparse vectorizer
+done in 1.571404s at 2.792MB/s
+n_samples: 69421, n_features: 27365
+
+Extracting features from the test data using the same vectorizer
+done in 3.129610s at 2.835MB/s
+n_samples: 139074, n_features: 27365
+
+Extracting 3500 best features by a chi-squared test
+done in 0.224401s
+
+================================================================================
+L2 penalty - LinearSVC
+________________________________________________________________________________
+accuracy:   0.910
+dimensionality: 3500
+density: 1.000000
+
+Top 10 keywords per class:
+
+anger: b'anger furi wrath outrag angri irrit rage disgust frustrat annoy'
+fear: b'recov nervous uneasi panick tens anxieti panic worri anxiou nervou'
+joy: b'euphoria thrill enthusiasm jolli delight pride happi bliss proud excit'
+love: b'salut julian libra thingssss duh be newmus nosi prejudic voluntari'
+sadness: b'neglect unhappi woe hurt sad lone homesick depress disappoint emba...
+surprise: b'utrecht mademynight rutger waytob thought givingisbetterthanget l...
+
+classification report:
+             precision    recall  f1-score   support
+
+      anger       0.99      0.99      0.99     34232
+       fear       0.97      0.98      0.98      9075
+        joy       0.95      0.94      0.95     33511
+       love       0.68      0.87      0.76     19682
+    sadness       0.95      0.84      0.89     40893
+   surprise       0.43      0.38      0.41      1681
+
+avg / total       0.92      0.91      0.91    139074
+
+confusion matrix:
+[[34015    12    18    97    81     9]
+ [    5  8909    13   107    35     6]
+ [   24    52 31590  1501   241   103]
+ [   90    69  1160 17025  1111   227]
+ [  172    90   332  5475 34318   506]
+ [    4     7   109   689   225   647]]
+
+With 50 Percent of Training Data !!
+================================================================================
+
+
+163122
+Data loaded.....
+163122 documents - 10.326MB (training set)
+138645 documents - 8.854MB (test set)
+6 categories
+
+Extracting features from the training data using a sparse vectorizer
+done in 5.121417s at 2.016MB/s
+n_samples: 163122, n_features: 46387
+
+Extracting features from the test data using the same vectorizer
+done in 4.203614s at 2.106MB/s
+n_samples: 138645, n_features: 46387
+
+Extracting 3500 best features by a chi-squared test
+done in 0.530401s
+
+================================================================================
+L2 penalty - Linear SVC
+________________________________________________________________________________
+accuracy:   0.913
+dimensionality: 3500
+density: 1.000000
+
+Top 10 keywords per class:
+
+anger: b'anger wrath furi angri outrag irrit rage disgust frustrat annoy'
+fear: b'recov nervous uneasi panick tens anxieti panic worri anxiou nervou'
+joy: b'thrill enthusiasm euphoria jolli delight pride happi bliss proud excit'
+love: b'amor keithurban amour nerdsunit criminalmind countrymus nosi be newmu...
+sadness: b'hurt agoni neglect woe sad lone homesick depress disappoint embarr...
+surprise: b'waytob unexpectedli happybirthdaytome givingisbetterthanget thoug...
+
+classification report:
+             precision    recall  f1-score   support
+
+      anger       0.99      0.99      0.99     34178
+       fear       0.98      0.98      0.98      9042
+        joy       0.95      0.95      0.95     33365
+       love       0.68      0.88      0.77     19549
+    sadness       0.96      0.85      0.90     40833
+   surprise       0.55      0.35      0.43      1678
+
+avg / total       0.92      0.91      0.91    138645
+
+confusion matrix:
+[[33958     8    19    92    96     5]
+ [   12  8872    12   106    38     2]
+ [   23    45 31541  1478   214    64]
+ [   84    63  1127 17122  1026   127]
+ [  156    80   294  5479 34529   295]
+ [    6     5   100   728   245   594]]
+

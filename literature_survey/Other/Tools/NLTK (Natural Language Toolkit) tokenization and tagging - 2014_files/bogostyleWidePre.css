@@ -1,0 +1,490 @@
+/* This css appears to be used for most pages except the front page, which has its own CSS */
+
+
+/* main color: #3a83b1; */
+
+body { 
+margin: 0px;
+background: #f6f6f6 url('http://fc09.deviantart.net/fs70/f/2013/173/9/a/squairy_light_by_simplysilent_d64uamh_by_simplysilent-d6a71r1.png');
+}
+
+body a{text-decoration:none;}
+body a:hover{text-decoration:underline;}
+
+
+/*--------------------- main blue top menu --------------------*/
+
+#tops {  /* main blue rectangle */
+background: #3a83b1;
+padding: 100px 0 0px 0;
+}
+
+.topmenu{
+margin-left:10%;
+}
+
+.topmenu li{  /* each of the five main links */
+display:inline;
+font-family: 'Fjalla One', sans-ser
+font-size:22px;
+text-transform: uppercase;
+color: #fff;
+margin: 0 2%;
+}
+
+.topmenu li a{
+color:#fff;
+}
+
+.topmenu li:hover{
+transition: all 300ms;
+}
+
+.topmenu li:hover a{
+transition: all 500ms;
+color:#000;
+text-decoration:none;
+}
+
+.bogo a{ /* bogotobogo logo top left*/
+color:#fff;
+font-family: 'Fjalla One', sans-serif;
+font-size:35px;
+position:absolute;
+left:6%;
+top:93px;
+}
+
+.bogo a:hover{text-decoration:none;}
+
+/*--------------------- dark blue submenu --------------------*/
+
+#submenu { 
+font-family: 'Open Sans', sans-serif;
+font-size:12px;
+margin-top:80px;
+background:#2b73a0;
+padding:6px 0 6px 0;
+}
+
+#submenu li{   /* each of the links in the submenu */
+display:inline;
+background:transparent;
+padding:6px 10px;
+text-transform:uppercase;
+}
+
+#submenu li a{
+color:#fff;
+}
+
+#submenu li:hover{
+background:#3a83b1;
+padding:6px 20px;
+transition: all 200ms;
+}
+
+#submenu li a:hover{
+text-decoration:none;
+}
+
+
+/*--------------------- linklist is the sidebar on the left side --------------------*/
+
+.linklist h1{
+font-family: 'Fjalla One', sans-serif;
+font-size:18px;
+font-weight:normal;
+margin-left:45px;
+text-align:center;
+}
+
+.linklist{
+width:18%;
+margin-right:2%;
+margin-left:2%;
+font-family: 'Open Sans', sans-serif;
+font-size:12px;
+text-align:left;
+}
+
+.linklist li a{
+color:#000;
+font-size:14px;
+}
+
+.linklist li{   /* each linklist link */
+list-style-type:none;
+background: #fff;
+margin:3px 0;
+padding:5px 10%;
+color:#000;
+}
+
+.linklist li:hover{
+color:#fff;
+background:#3a83b1;
+padding:10px 10%;
+transition: all 300ms;
+}
+
+.linklist li:hover a{
+color:#fff;
+text-decoration:none;
+}
+
+/* -------------- Google column ad --------*/
+.skyscraper{
+margin-left:10%;}
+
+/* -------------- contenttext is the main text part on the right -------------- */
+
+#contenttext {    /* used for pages with two columns */
+width:67%;
+padding:3%;
+background:#fff;
+outline: 1px solid #ccc;
+}
+
+#contenttext, .linklist{
+margin-top:100px;
+float:left;
+}
+
+#onecontenttext{    /* used for pages with only one column of main text */
+width:70%;
+padding:3%;
+background:#fff;
+margin-top:50px;
+}
+
+.bodytext { 
+font-family: 'Open Sans', sans-serif;
+font-variant: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    font-size-adjust: none;
+    font-stretch: normal;
+    color: #323232;
+    }    
+
+
+.titletext {    /* main black titles */
+font-family: 'Fjalla One', sans-serif;
+font-size: 40px;
+color: #000;
+letter-spacing:2px;
+text-transform: uppercase;
+padding:25px ;
+text-align:center;
+z-index:2;
+}
+
+li{
+padding:5px 0;
+}
+
+pre{
+font-weight:bold;
+text-shadow: 1px 1px 0px #fff;
+color:#323232;
+font-family:'Courier New';
+font-size:15px;
+background: #eee;
+padding:20px 20px;    
+border-left: 10px solid #ddd;
+width:650px;
+overflow:auto;
+}
+
+pre:hover{
+text-shadow:none;
+}
+
+.subtitle {
+font-family: 'Fjalla One', sans-serif;
+background: url('http://fc00.deviantart.net/fs70/f/2013/169/5/c/stripes_by_simplysilent-d69m4hj.png');
+font-style: normal;
+font-size: 20px;
+text-align:left;
+font-weight: 400;
+color: #3a83b1;
+text-transform: uppercase;
+margin-bottom:30px;
+height:25px;
+padding-top:8px;
+text-shadow: 0px 0px 20px #f;
+}
+
+ .subtitle_2nd {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+   /* color: rgb(204, 0, 0);*/
+    color: #323232;
+    text-transform: uppercase;
+    border-left: 10px solid #50B550;
+    padding-left:10px;
+    }
+
+
+/* -------------- T A B L E S ------------------ */
+
+table, td, th{
+border:1px solid #175379;
+}
+
+
+table{
+margin:0 auto;
+border-collapse:collapse;
+text-align:center;
+}
+
+th{
+background-color:#3a83b1;
+color:white;
+}
+
+.clear{  /* important for floats */
+clear:both;}
+
+    
+/* --------------- didn't really use this stuff -------------*/
+    
+
+.footer{
+height:200px;
+background: #323232;
+padding: 30px 100px 20px 250px;
+}
+
+.link{
+background: transparent;
+float: left;
+font-family: 'Lato', sans-serif;
+width:200px;
+text-align: center;
+color: #ffffff;
+font-size: 14px;
+padding:0 20px;
+height:170px;
+}
+
+.link h1{
+color: #ffffff;
+font-size: 16px;
+margin-left:10px;
+text-align: center;
+letter-spacing:1px;
+text-transform: uppercase;
+font-weight: 300;
+padding:5px 0 5px 0;
+}
+
+.link a{
+text-decoration:none;
+color: #ffffff;
+}
+
+  #logo { float: left;
+    height: 140px;
+    width: 140px;
+    background-image: url(tiger.gif);
+    background-position: left center;
+    margin-top: 20px;
+    margin-left: 10px;
+    }
+
+  #topheader { float: right;
+    width: 556px;
+    height: 97px;
+    background-color: rgb(240, 240, 240);
+    position: relative;
+    margin-top: 20px;
+    }
+
+  #toplinks { position: absolute;
+    right: 10px;
+    top: 10px;
+    }
+
+  #rightpanel { float: right;
+    width: 300px;
+    margin-left: 50px;
+    font-weight: normal;
+    color: midnightblue;
+    font-size: 14px;
+    font-family: times, serif;
+    font-style: italic;
+
+    }
+
+  ul.NoBullet {
+	list-style-type: none;
+  }
+  
+
+
+  #leftpanel { float: right;
+    width: 200px;
+    margin-top: 50px;
+    }
+
+  #footer { padding: 10px;
+    float: left;
+    width: 800px;
+    background-color: rgb(240, 240, 240);
+    }
+
+  #bookmarkshare {float: right;
+	margin-top: 50px;
+    }
+
+
+
+  .graypanel { border: 1px solid rgb(102, 102, 102);
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(247, 247, 247);
+    }
+
+  .headerbodytext { font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 0.7em;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    color: rgb(102, 102, 102);
+    margin-left: 30px;
+    } 
+ 
+
+
+
+  .subtitle_3rd {
+    font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-size: 14px;
+    font-weight: bold;
+   /* color: rgb(204, 0, 0);*/
+    color: rgb(0, 110, 150);    }
+
+  .whitetitle { font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+    font-size: 20px;
+    }
+
+  .smalltitle { font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(204, 0, 0);
+    }
+
+  .smallwhitetext { font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-size: 11px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    }
+
+  .smallwhitetext a { font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-size: 11px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    }
+
+  .smallwhitetext a:hover { text-decoration: underline;
+    }
+
+  .smallgraytext { font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-size: 11px;
+    font-weight: bold;
+    color: rgb(153, 153, 153);
+    }
+
+  .smallgraytext a { font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-size: 11px;
+    font-weight: bold;
+    color: rgb(153, 153, 153);
+    text-decoration: none;
+    }
+
+  .smallgraytext a:hover { text-decoration: underline;
+    }
+
+  .smallredtext { font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-size: 11px;
+    font-weight: bold;
+    color: rgb(204, 0, 0);
+    }
+
+  .smallredtext a { font-family: Tahoma,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    line-height: normal;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-size: 11px;
+    font-weight: bold;
+    color: rgb(204, 0, 0);
+    text-decoration: none;
+    }
+
+  .smallredtext a:hover { text-decoration: underline;
+
+  }
+
+
+.footer .text{
+color: #ffffff;
+text-align:center;
+margin-left:-200px;
+font-family: 'Open Sans', sans-serif;
+font-weight: 300px;
+font-size:12px;
+
+}

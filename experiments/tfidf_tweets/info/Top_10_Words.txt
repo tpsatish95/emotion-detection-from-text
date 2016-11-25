@@ -1,0 +1,5 @@
+In python's scikit-learn each linear classifier model has a "coef_" parameter 
+
+This provides the weights assigned by the model to each feature
+
+I just sorted this "coef_" array and displayed the top 10 highly scored words.

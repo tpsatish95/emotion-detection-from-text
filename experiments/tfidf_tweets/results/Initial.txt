@@ -1,0 +1,203 @@
+352,124 Documents in Total
+
+data loaded
+352124 documents - 22.212MB (training set)
+159693 documents - 10.119MB (test set)
+6 categories
+
+Extracting features from the training data using a sparse vectorizer
+done in 6.307014s at 3.522MB/s
+n_samples: 352124, n_features: 70739
+
+Extracting features from the test data using the same vectorizer
+done in 2.642008s at 3.830MB/s
+n_samples: 159693, n_features: 70739
+
+Extracting 3500 best features by a chi-squared test
+done in 0.733002s
+====================================================
+
+============================
+Linear SVC with L2 penalty
+_________________________________________________________
+
+_______________________
+Training: 
+LinearSVC(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='l2', multi_class='ovr', penalty='l2',
+     random_state=None, tol=0.001, verbose=0)
+train time: 7.318s
+test time:  0.040s
+accuracy:   0.919
+dimensionality: 3500
+density: 1.000000
+
+top 10 keywords per class:
+
+anger: b'anger furi wrath angri outrag irrit rage disgust frustrat annoy'
+fear: b'recov nervous uneasi panick tens anxieti panic worri anxiou nervou'
+joy: b'elat delight thrill jolli euphoria pride happi bliss proud excit'
+love: b'alexfollowm keithurban be moreno gile gogyohka nosi countrymus 
+
+newmus...
+sadness: b'hurt agoni neglect woe sad lone homesick depress disappoint 
+
+embarr...
+surprise: b'goodchild buffday didin givingisbetterthanget actual playday 
+
+2011...
+
+classification report:
+             precision    recall  f1-score   support
+
+      anger       0.99      0.99      0.99     37514
+       fear       0.97      0.98      0.98      9360
+        joy       0.97      0.95      0.96     49030
+       love       0.68      0.88      0.77     20427
+    sadness       0.95      0.85      0.90     41672
+   surprise       0.45      0.41      0.43      1690
+
+avg / total       0.93      0.92      0.92    159693
+
+confusion matrix:
+[[37278    10    20    95   101    10]
+ [    9  9200    10   100    36     5]
+ [   35    68 46385  2107   303   132]
+ [   80    73  1158 17897  1018   201]
+ [  140    82   293  5418 35252   487]
+ [    7     5    96   671   220   691]]
+====================================================
+
+============================
+Linear SVC with L1 penalty
+_________________________________________________________
+
+_______________________
+Training: 
+LinearSVC(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+     intercept_scaling=1, loss='l2', multi_class='ovr', penalty='l1',
+     random_state=None, tol=0.001, verbose=0)
+train time: 24.287s
+test time:  0.030s
+accuracy:   0.919
+dimensionality: 3500
+density: 0.592905
+
+top 10 keywords per class:
+
+anger: b'anger furi wrath angri outrag irrit rage disgust frustrat annoy'
+fear: b'nervous recov uneasi panick tens anxieti panic worri anxiou nervou'
+joy: b'delight elat thrill jolli euphoria pride happi bliss proud excit'
+love: b'nerdsunit nosi keithurban michaeljackson gile gogyohka countrymus 
+
+eff...
+sadness: b'despair agoni neglect sad woe lone homesick depress disappoint 
+
+emb...
+surprise: b'jajajajaja playday twilightzon backdoor surpris decemberbabi 
+
+didi...
+
+classification report:
+             precision    recall  f1-score   support
+
+      anger       0.99      0.99      0.99     37514
+       fear       0.98      0.98      0.98      9360
+        joy       0.97      0.95      0.96     49030
+       love       0.68      0.88      0.77     20427
+    sadness       0.95      0.85      0.90     41672
+   surprise       0.45      0.40      0.43      1690
+
+avg / total       0.93      0.92      0.92    159693
+
+confusion matrix:
+[[37267    13    20   100   102    12]
+ [    7  9199    10   101    38     5]
+ [   32    67 46379  2119   301   132]
+ [   78    74  1151 17909  1010   205]
+ [  139    75   291  5438 35243   486]
+ [    7     5    96   681   217   684]]
+
+====================================================
+
+============================
+Naive Bayes
+_________________________________________________________
+
+_______________________
+Training: 
+MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)
+train time: 0.542s
+test time:  0.050s
+accuracy:   0.822
+dimensionality: 3500
+density: 1.000000
+
+top 10 keywords per class:
+
+anger: b'disgust hate when do peopl you not my frustrat annoy'
+fear: b'silenc thought get thi not user my anxiou worri nervou'
+joy: b'go you wait christma day proud my user happi excit'
+love: b'not all happi ltd my you user lot effort voluntari'
+sadness: b'thought lone my you embarrass sad not depress user disappoint'
+surprise: b'today did thought good you my not actual user surpris'
+
+classification report:
+             precision    recall  f1-score   support
+
+      anger       0.88      0.91      0.90     37514
+       fear       0.66      0.93      0.77      9360
+        joy       0.88      0.82      0.85     49030
+       love       0.61      0.68      0.64     20427
+    sadness       0.88      0.81      0.85     41672
+   surprise       0.44      0.11      0.17      1690
+
+avg / total       0.83      0.82      0.82    159693
+
+confusion matrix:
+[[34300   609   618  1034   917    36]
+ [  155  8692   107   218   180     8]
+ [  739  1504 40447  5002  1250    88]
+ [ 1145   700  2968 13807  1779    28]
+ [ 2545  1481  1436  2298 33844    68]
+ [  179   242   421   247   420   181]]
+
+_________________________________________________________
+
+_______________________
+Training: 
+BernoulliNB(alpha=0.01, binarize=0.0, class_prior=None, fit_prior=True)
+train time: 0.614s
+test time:  0.070s
+accuracy:   0.851
+dimensionality: 3500
+density: 1.000000
+
+top 10 keywords per class:
+
+anger: b'other user peopl when do frustrat you not my annoy'
+fear: b'trail speechless silenc thought not user anxiou worri my nervou'
+joy: b'get go other day you proud user my happi excit'
+love: b'all other happi not you my user voluntari effort lot'
+sadness: b'have thought sad embarrass depress disappoint you not my user'
+surprise: b'out just have thought actual you surpris not my user'
+
+classification report:
+             precision    recall  f1-score   support
+
+      anger       0.92      0.96      0.94     37514
+       fear       0.75      0.95      0.84      9360
+        joy       0.88      0.87      0.88     49030
+       love       0.67      0.62      0.64     20427
+    sadness       0.90      0.83      0.87     41672
+   surprise       0.31      0.37      0.33      1690
+
+avg / total       0.85      0.85      0.85    159693
+
+confusion matrix:
+[[36042   134   221   620   424    73]
+ [   90  8937    41   149   126    17]
+ [  443   695 42795  3648   994   455]
+ [  836   715  3793 12674  2032   377]
+ [ 1828  1310  1449  1810 34780   495]
+ [   95   156   339   149   328   623]]

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://code.google.com/p/word2vec/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ 
+ <meta name="ROBOTS" content="NOARCHIVE">
+ 
+ <link rel="icon" type="image/vnd.microsoft.icon" href="https://ssl.gstatic.com/codesite/ph/images/phosting.ico">
+ 
+ 
+ <script src="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/plusone.js" gapi_processed="true"></script><script type="text/javascript">
+ 
+ 
+ 
+ 
+ var codesite_token = "ABZ6GAeFZXAgkEwhAyozW7A0wYHcAobDbA:1420374025191";
+ 
+ 
+ var CS_env = {"token": "ABZ6GAeFZXAgkEwhAyozW7A0wYHcAobDbA:1420374025191", "assetVersionPath": "https://ssl.gstatic.com/codesite/ph/1729405847801014513", "domainName": null, "projectHomeUrl": "/p/word2vec", "profileUrl": "/u/114458629038712575192/", "projectName": "word2vec", "loggedInUserEmail": "tpsatish95@gmail.com", "assetHostPath": "https://ssl.gstatic.com/codesite/ph", "relativeBaseUrl": ""};
+ var _gaq = _gaq || [];
+ _gaq.push(
+ ['siteTracker._setAccount', 'UA-18071-1'],
+ ['siteTracker._trackPageview']);
+ 
+ (function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+ })();
+ 
+ </script><script type="text/javascript" async="" src="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/ga.js"></script>
+ 
+ 
+ <title>
+ word2vec -
+ 
+ 
+ Tool for computing continuous distributed representations of words. - Google Project Hosting
+ </title>
+ <link type="text/css" rel="stylesheet" href="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/core.css">
+ 
+ <link type="text/css" rel="stylesheet" href="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/ph_detail.css">
+ 
+ 
+ 
+ 
+<!--[if IE]>
+ <link type="text/css" rel="stylesheet" href="https://ssl.gstatic.com/codesite/ph/1729405847801014513/css/d_ie.css" >
+<![endif]-->
+ <style type="text/css">
+ .menuIcon.off { background: no-repeat url(https://ssl.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -42px }
+ .menuIcon.on { background: no-repeat url(https://ssl.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 -28px }
+ .menuIcon.down { background: no-repeat url(https://ssl.gstatic.com/codesite/ph/images/dropdown_sprite.gif) 0 0; }
+ 
+ 
+ .psicon-container {
+ min-width:24px;
+ }
+
+ 
+ </style>
+</head>
+<body class="t1">
+<script type="text/javascript">
+ window.___gcfg = {lang: 'en'};
+ (function() 
+ {var po = document.createElement("script");
+ po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
+ var s = document.getElementsByTagName("script")[0];
+ s.parentNode.insertBefore(po, s);
+ })();
+</script>
+<div class="headbg">
+
+ <div id="gaia">
+ 
+
+ <span>
+ 
+ 
+ 
+ <a href="https://code.google.com/p/word2vec/#" id="multilogin-dropdown" onclick="return false;"><u><b>tpsatish95@gmail.com</b></u> <small>▼</small></a>
+ 
+ 
+ | <a href="https://code.google.com/u/114458629038712575192/" id="projects-dropdown" onclick="return false;"><u>My favorites</u> <small>▼</small></a>
+ | <a href="https://code.google.com/u/114458629038712575192/" onclick="_CS_click(&#39;/gb/ph/profile&#39;);" title="Profile, Updates, and Settings"><u>Profile</u></a>
+ | <a href="https://www.google.com/accounts/Logout?continue=https%3A%2F%2Fcode.google.com%2Fp%2Fword2vec%2F" onclick="_CS_click(&#39;/gb/ph/signout&#39;);"><u>Sign out</u></a>
+ 
+ </span>
+
+ </div>
+
+ <div class="gbh" style="left: 0pt;"></div>
+ <div class="gbh" style="right: 0pt;"></div>
+ 
+ 
+ <div style="height: 1px"></div>
+<!--[if lte IE 7]>
+<div style="text-align:center;">
+Your version of Internet Explorer is not supported. Try a browser that
+contributes to open source, such as <a href="http://www.firefox.com">Firefox</a>,
+<a href="http://www.google.com/chrome">Google Chrome</a>, or
+<a href="http://code.google.com/chrome/chromeframe/">Google Chrome Frame</a>.
+</div>
+<![endif]-->
+
+
+
+ <table style="padding:0px; margin: 0px 0px 10px 0px; width:100%" cellpadding="0" cellspacing="0" itemscope="" itemtype="http://schema.org/CreativeWork">
+ <tbody><tr style="height: 58px;">
+ 
+ 
+ 
+ <td id="plogo">
+ <link itemprop="url" href="https://code.google.com/p/word2vec">
+ <a href="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting.html">
+ 
+ <img src="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/search-48.gif" alt="Logo" itemprop="image">
+ 
+ </a>
+ </td>
+ 
+ <td style="padding-left: 0.5em">
+ 
+ <div id="pname">
+ <a href="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting.html"><span itemprop="name">word2vec</span></a>
+ </div>
+ 
+ <div id="psum">
+ <a id="project_summary_link" href="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting.html"><span itemprop="description">Tool for computing continuous distributed representations of words.</span></a>
+ 
+ </div>
+ 
+ 
+ </td>
+ <td style="white-space:nowrap;text-align:right; vertical-align:bottom;">
+ 
+ <form action="https://code.google.com/hosting/search">
+ <input size="30" name="q" value="" type="text">
+ 
+ <input type="submit" name="projectsearch" value="Search projects">
+ </form>
+ 
+ </td></tr>
+ </tbody></table>
+
+</div>
+
+ 
+<div id="mt" class="gtb"> 
+ <a href="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting.html" class="tab active">Project&nbsp;Home</a>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <a href="https://code.google.com/p/word2vec/issues/list" class="tab ">Issues</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="https://code.google.com/p/word2vec/source/checkout" class="tab ">Source</a>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="gtbc"></div>
+</div>
+<table cellspacing="0" cellpadding="0" width="100%" align="center" border="0" class="st">
+ <tbody><tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <td class="subt">
+ <div class="st1">
+ <div class="isf">
+ <span class="inst1">
+ <a href="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting.html">Summary</a>
+ </span>
+ 
+ 
+ &nbsp;
+ <span class="inst3">
+ <a href="https://code.google.com/p/word2vec/people/list">People</a>
+ </span>
+ 
+ 
+ </div>
+</div>
+
+ </td>
+ 
+ 
+ <td align="right" valign="top" class="bevel-right"></td>
+ </tr>
+</tbody></table>
+
+
+<script type="text/javascript">
+ var cancelBubble = false;
+ function _go(url) { document.location = url; }
+</script>
+<div id="maincol">
+
+ 
+
+
+
+
+
+<table width="100%">
+ <tbody><tr class="pscontent">
+ <td class="pscolumnl">
+ 
+ <div class="phead">Project Information</div>
+ 
+ 
+ 
+ <div class="psicon">
+ <div class="psicon-container goog-inline-block">
+ <img width="15" height="15" id="star_img" title="Click to star project" src="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/star_off.gif" style="cursor:pointer; float:right" onclick="_CS_toggleStar(this,
+ {&#39;scope&#39;: &#39;projects&#39;,
+ &#39;user&#39;: &#39;_CURRENT_USER&#39;,
+ &#39;item&#39;: &#39;word2vec&#39;
+ },
+ true,
+ &#39;&#39;,
+ &#39;&#39;,
+ &#39;&#39;,
+ &#39;star_count&#39;,
+ &#39;plural&#39;);">
+ </div>
+ <span>
+ Starred by <span id="star_count">754</span>&nbsp;user<span id="plural">s</span>
+ </span>
+ </div> 
+ 
+ <ul class="pslist">
+ 
+ <li class="psmeta">
+ <a href="https://code.google.com/p/word2vec/feeds">Project feeds</a>
+ </li>
+ <li class="psgap">
+ 
+ 
+ 
+ </li><li class="psmeta"><b>Code license</b></li>
+ <li class="psmeta">
+ <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="nofollow">Apache License 2.0</a>
+ 
+ </li>
+ <li class="psgap">
+ 
+ 
+ 
+ 
+ 
+ 
+ </li><li class="psmeta">
+ <span id="project_labels">
+ <b>Labels</b><br>
+ 
+ <a class="label" href="https://code.google.com/hosting/search?q=label:NeuralNetwork">NeuralNetwork</a>, 
+ 
+ <a class="label" href="https://code.google.com/hosting/search?q=label:MachineLearning">MachineLearning</a>, 
+ 
+ <a class="label" href="https://code.google.com/hosting/search?q=label:NaturalLanguageProcessing">NaturalLanguageProcessing</a>, 
+ 
+ <a class="label" href="https://code.google.com/hosting/search?q=label:WordVectors">WordVectors</a>, 
+ 
+ <a class="label" href="https://code.google.com/hosting/search?q=label:Google">Google</a>
+ 
+ </span>
+ </li>
+ <li class="psgap">
+ 
+ 
+ </li></ul>
+ <div class="psicon">
+ <div class="psicon-container goog-inline-block">
+ <div style="float:right" class="SPRITE_people-y16 goog-inline-block vt"></div>
+ </div>
+ <span><b>Members</b></span>
+ </div>
+ <ul class="pslist">
+ 
+ 
+ 
+ 
+
+ <a class="userlink" href="https://code.google.com/u/105807597151222381015/">tmiko...@gmail.com</a>
+ 
+ 
+ 
+ 
+ <li class="psmeta">
+ <a href="https://code.google.com/p/word2vec/people/list">6 contributors</a>
+ </li>
+ 
+ <li class="psgap">
+ 
+ 
+ </li></ul>
+ 
+ 
+ 
+ 
+ <div class="phead">Links</div>
+ <ul class="pslist" style="white-space:nowrap">
+ 
+ 
+ 
+ <li class="psmeta"><b>Groups</b></li>
+ 
+ <li class="psmeta">
+ <a href="http://groups.google.com/group/word2vec-toolkit" rel="nofollow">Discussion group for the word2vec project.</a>
+ </li>
+ 
+ <li class="psgap">
+ 
+ </li></ul>
+ 
+ </td>
+ <td id="wikicontent" class="psdescription">
+ <h1><a name="Introduction"></a>Introduction<a href="https://code.google.com/p/word2vec/#Introduction" class="section_anchor"></a></h1><p>This tool provides an efficient implementation of the continuous bag-of-words and skip-gram architectures for computing vector representations of words. These representations can be subsequently used in many natural language processing applications and for further research. </p><h1><a name="Quick_start"></a>Quick start<a href="https://code.google.com/p/word2vec/#Quick_start" class="section_anchor"></a></h1><ul><li>Download the code: svn checkout <a href="http://word2vec.googlecode.com/svn/trunk/" rel="nofollow">http://word2vec.googlecode.com/svn/trunk/</a> </li><li>Run 'make' to compile word2vec tool </li><li>Run the demo scripts: <i>./demo-word.sh</i> and <i>./demo-phrases.sh</i> </li><li>For questions about the toolkit, see <a href="http://groups.google.com/group/word2vec-toolkit" rel="nofollow">http://groups.google.com/group/word2vec-toolkit</a> </li></ul><h1><a name="How_does_it_work"></a>How does it work<a href="https://code.google.com/p/word2vec/#How_does_it_work" class="section_anchor"></a></h1><p>The <i>word2vec</i> tool takes a text corpus as input and produces the word vectors as output. It first constructs a vocabulary from the training text data and then learns vector representation of words. The resulting word vector file can be used as features in many natural language processing and machine learning applications. </p><p>A simple way to investigate the learned representations is to find the closest words for a user-specified word. The <i>distance</i> tool serves that purpose. For example, if you enter 'france', <i>distance</i> will display the most similar words and their distances to 'france', which should look like: </p><pre class="prettyprint"><span class="pln">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="typ">Word</span><span class="pln"> &nbsp; &nbsp; &nbsp; </span><span class="typ">Cosine</span><span class="pln"> distance<br></span><span class="pun">-------------------------------------------</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; spain &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.678515</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; belgium &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.665923</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; netherlands &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.652428</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; italy &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.633130</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; switzerland &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.622323</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;luxembourg &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.610033</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;portugal &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.577154</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;russia &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.571507</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; germany &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.563291</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; catalonia &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.534176</span></pre><p>There are two main learning algorithms in <i>word2vec</i> : continuous bag-of-words and continuous skip-gram. The switch <i>-cbow</i> allows the user to pick one of these learning algorithms. Both algorithms learn the representation of a word that is useful for prediction of other words in the sentence. These algorithms are described in detail in <tt>[1,2]</tt>. </p><h1><a name="Interesting_properties_of_the_word_vectors"></a>Interesting properties of the word vectors<a href="https://code.google.com/p/word2vec/#Interesting_properties_of_the_word_vectors" class="section_anchor"></a></h1><p>It was recently shown that the word vectors capture many linguistic regularities, for example vector operations <i>vector('Paris') - vector('France') + vector('Italy')</i> results in a vector that is very close to <i>vector('Rome')</i>, and <i>vector('king') - vector('man') + vector('woman')</i> is close to <i>vector('queen')</i> <tt>[3, 1]</tt>. You can try out a simple demo by running <i>demo-analogy.sh</i>. </p><p>To observe strong regularities in the word vector space, it is needed to train the models on large data set, with sufficient vector dimensionality as shown in <tt>[1]</tt>. Using the <i>word2vec</i> tool, it is possible to train models on huge data sets (up to hundreds of billions of words). </p><h1><a name="From_words_to_phrases_and_beyond"></a>From words to phrases and beyond<a href="https://code.google.com/p/word2vec/#From_words_to_phrases_and_beyond" class="section_anchor"></a></h1><p>In certain applications, it is useful to have vector representation of larger pieces of text. For example, it is desirable to have only one vector for representing <i>'san francisco'</i>. This can be achieved by pre-processing the training data set to form the phrases using the <i>word2phrase</i> tool, as is shown in the example script <i>./demo-phrases.sh</i>. The example output with the closest tokens to <i>'san_francisco'</i> looks like: </p><pre class="prettyprint"><span class="pln">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="typ">Word</span><span class="pln"> &nbsp; &nbsp; &nbsp; </span><span class="typ">Cosine</span><span class="pln"> distance<br></span><span class="pun">-------------------------------------------</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; los_angeles &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.666175</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; golden_gate &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.571522</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; oakland &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.557521</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;california &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.554623</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; san_diego &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.534939</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pasadena &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.519115</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; seattle &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.512098</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; taiko &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.507570</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; houston &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.499762</span><span class="pln"><br>&nbsp; &nbsp; &nbsp;chicago_illinois &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.491598</span></pre><p>The linearity of the vector operations seems to weakly hold also for the addition of several vectors, so it is possible to add several word or phrase vectors to form representation of short sentences <tt>[2]</tt>. </p><h1><a name="How_to_measure_quality_of_the_word_vectors"></a>How to measure quality of the word vectors<a href="https://code.google.com/p/word2vec/#How_to_measure_quality_of_the_word_vectors" class="section_anchor"></a></h1><p>Several factors influence the quality of the word vectors: </p><ul><li>amount and quality of the training data  </li><li>size of the vectors </li><li>training algorithm </li></ul><p></p><p>The quality of the vectors is crucial for any application. However, exploration of different hyper-parameter settings for complex tasks might be too time demanding. Thus, we designed simple test sets that can be used to quickly evaluate the word vector quality. </p><p>For the word relation test set described in <tt>[1]</tt>, see <i>./demo-word-accuracy.sh</i>, for the phrase relation test set described in <tt>[2]</tt>, see <i>./demo-phrase-accuracy.sh</i>. Note that the accuracy depends heavily on the amount of the training data; our best results for both test sets are above 70% accuracy with coverage close to 100%. </p><h1><a name="Word_clustering"></a>Word clustering<a href="https://code.google.com/p/word2vec/#Word_clustering" class="section_anchor"></a></h1><p>The word vectors can be also used for deriving word classes from huge data sets. This is achieved by performing K-means clustering on top of the word vectors. The script that demonstrates this is <i>./demo-classes.sh</i>. The output is a vocabulary file with words and their corresponding class IDs, such as: </p><pre class="prettyprint"><span class="pln">carnivores </span><span class="lit">234</span><span class="pln"><br>carnivorous </span><span class="lit">234</span><span class="pln"><br>cetaceans </span><span class="lit">234</span><span class="pln"><br>cormorant </span><span class="lit">234</span><span class="pln"><br>coyotes </span><span class="lit">234</span><span class="pln"><br>crocodile </span><span class="lit">234</span><span class="pln"><br>crocodiles </span><span class="lit">234</span><span class="pln"><br>crustaceans </span><span class="lit">234</span><span class="pln"><br>cultivated </span><span class="lit">234</span><span class="pln"><br>danios </span><span class="lit">234</span><span class="pln"><br></span><span class="pun">.</span><span class="pln"><br></span><span class="pun">.</span><span class="pln"><br></span><span class="pun">.</span><span class="pln"><br>acceptance </span><span class="lit">412</span><span class="pln"><br>argue </span><span class="lit">412</span><span class="pln"><br>argues </span><span class="lit">412</span><span class="pln"><br>arguing </span><span class="lit">412</span><span class="pln"><br>argument </span><span class="lit">412</span><span class="pln"><br>arguments </span><span class="lit">412</span><span class="pln"><br>belief </span><span class="lit">412</span><span class="pln"><br>believe </span><span class="lit">412</span><span class="pln"><br>challenge </span><span class="lit">412</span><span class="pln"><br>claim </span><span class="lit">412</span></pre><h1><a name="Performance"></a>Performance<a href="https://code.google.com/p/word2vec/#Performance" class="section_anchor"></a></h1><p>The training speed can be significantly improved by using parallel training on multiple-CPU machine (use the switch '-threads N'). The hyper-parameter choice is crucial for performance (both speed and accuracy), however varies for different applications. The main choices to make are: </p><ul><li>architecture: skip-gram (slower, better for infrequent words) vs CBOW (fast) </li><li>the training algorithm: hierarchical softmax (better for infrequent words) vs negative sampling (better for frequent words, better with low dimensional vectors) </li><li>sub-sampling of frequent words: can improve both accuracy and speed for large data sets (useful values are in range 1e-3 to 1e-5) </li><li>dimensionality of the word vectors: usually more is better, but not always </li><li>context (window) size: for skip-gram usually around 10, for CBOW around 5 </li></ul><h1><a name="Where_to_obtain_the_training_data"></a>Where to obtain the training data<a href="https://code.google.com/p/word2vec/#Where_to_obtain_the_training_data" class="section_anchor"></a></h1><p>The quality of the word vectors increases significantly with amount of the training data. For research purposes, you can consider using data sets that are available on-line: </p><ul><li><a href="http://mattmahoney.net/dc/enwik9.zip" rel="nofollow">First billion characters from wikipedia</a> (use the pre-processing perl script from the bottom of <a href="http://mattmahoney.net/dc/textdata.html" rel="nofollow">Matt Mahoney's page</a>) </li><li><a href="http://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2" rel="nofollow">Latest Wikipedia dump</a> Use the same script as above to obtain clean text. Should be more than 3 billion words. </li><li><a href="http://www.statmt.org/wmt11/translation-task.html#download" rel="nofollow">WMT11 site</a>: text data for several languages (duplicate sentences should be removed before training the models) </li><li><a href="http://www.statmt.org/lm-benchmark/1-billion-word-language-modeling-benchmark-r13output.tar.gz" rel="nofollow">Dataset from "One Billion Word Language Modeling Benchmark"</a> Almost 1B words, already pre-processed text. </li><li><a href="http://ebiquity.umbc.edu/redirect/to/resource/id/351/UMBC-webbase-corpus" rel="nofollow">UMBC webbase corpus</a> Around 3 billion words, more info <a href="http://ebiquity.umbc.edu/blogger/2013/05/01/umbc-webbase-corpus-of-3b-english-words/" rel="nofollow">here</a>. Needs further processing (mainly tokenization). </li><li>Text data from more languages can be obtained at <a href="http://statmt.org/" rel="nofollow">statmt.org</a> and in the <a href="https://sites.google.com/site/rmyeid/projects/polyglot#TOC-Download-Wikipedia-Text-Dumps" rel="nofollow">Polyglot project</a>. </li></ul><h1><a name="Pre-trained_word_and_phrase_vectors"></a>Pre-trained word and phrase vectors<a href="https://code.google.com/p/word2vec/#Pre-trained_word_and_phrase_vectors" class="section_anchor"></a></h1><p>We are publishing pre-trained vectors trained on part of Google News dataset (about 100 billion words). The model contains 300-dimensional vectors for 3 million words and phrases. The phrases were obtained using a simple data-driven approach described in <tt>[2]</tt>. The archive is available here: <a href="https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing" rel="nofollow">GoogleNews-vectors-negative300.bin.gz</a>. </p><p>An example output of <i><tt>./distance GoogleNews-vectors-negative300.bin</tt></i>: </p><pre class="prettyprint"><span class="typ">Enter</span><span class="pln"> word </span><span class="kwd">or</span><span class="pln"> sentence </span><span class="pun">(</span><span class="pln">EXIT to </span><span class="kwd">break</span><span class="pun">):</span><span class="pln"> </span><span class="typ">Chinese</span><span class="pln"> river<br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">Word</span><span class="pln"> &nbsp; &nbsp; &nbsp; </span><span class="typ">Cosine</span><span class="pln"> distance<br></span><span class="pun">------------------------------------------</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="typ">Yangtze_River</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.667376</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="typ">Yangtze</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.644091</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="typ">Qiantang_River</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.632979</span><span class="pln"><br>&nbsp; &nbsp;</span><span class="typ">Yangtze_tributary</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.623527</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="typ">Xiangjiang_River</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.615482</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="typ">Huangpu_River</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.604726</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; </span><span class="typ">Hanjiang_River</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.598110</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span class="typ">Yangtze_river</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.597621</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="typ">Hongze_Lake</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.594108</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="typ">Yangtse</span><span class="pln"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.593442</span></pre><p>The above example will average vectors for words 'Chinese' and 'river' and will return the closest neighbors to the resulting vector. More examples that demonstrate results of vector addition are presented in <tt>[2]</tt>. Note that more precise and disambiguated entity vectors can be found in the following dataset that uses Freebase naming. </p><h1><a name="Pre-trained_entity_vectors_with_Freebase_naming"></a>Pre-trained entity vectors with Freebase naming<a href="https://code.google.com/p/word2vec/#Pre-trained_entity_vectors_with_Freebase_naming" class="section_anchor"></a></h1><p>We are also offering more than 1.4M pre-trained entity vectors with naming from <a href="http://www.freebase.com/" rel="nofollow">Freebase</a>. This is especially helpful for projects related to knowledge mining. </p><ul><li>Entity vectors trained on 100B words from various news articles: <a href="https://docs.google.com/file/d/0B7XkCwpI5KDYaDBDQm1tZGNDRHc/edit?usp=sharing" rel="nofollow">freebase-vectors-skipgram1000.bin.gz</a> </li><li>Entity vectors trained on 100B words from various news articles, using the deprecated /en/ naming (more easily readable); the vectors are sorted by frequency: <a href="https://docs.google.com/file/d/0B7XkCwpI5KDYeFdmcVltWkhtbmM/edit?usp=sharing" rel="nofollow">freebase-vectors-skipgram1000-en.bin.gz</a> </li></ul><p>Here is an example output of <i>./distance freebase-vectors-skipgram1000-en.bin</i>: </p><pre class="prettyprint"><span class="typ">Enter</span><span class="pln"> word </span><span class="kwd">or</span><span class="pln"> sentence </span><span class="pun">(</span><span class="pln">EXIT to </span><span class="kwd">break</span><span class="pun">):</span><span class="pln"> </span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">geoffrey_hinton<br><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="typ">Word</span><span class="pln"> &nbsp; &nbsp; &nbsp; </span><span class="typ">Cosine</span><span class="pln"> distance<br></span><span class="pun">--------------------------------------------------</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">marvin_minsky &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.457204</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">paul_corkum &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.443342</span><span class="pln"><br>&nbsp;</span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">william_richard_peltier &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.432396</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">brenda_milner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.430886</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">john_charles_polanyi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.419538</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">leslie_valiant &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.416399</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">hava_siegelmann &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.411895</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">hans_moravec &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.406726</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">david_rumelhart &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.405275</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="pun">/</span><span class="pln">en</span><span class="pun">/</span><span class="pln">godel_prize &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="lit">0.405176</span></pre><h1><a name="Final_words"></a>Final words<a href="https://code.google.com/p/word2vec/#Final_words" class="section_anchor"></a></h1><p>Thank you for trying out this toolkit, and do not forget to let us know when you obtain some amazing results! We hope that the distributed representations will significantly improve the state of the art in NLP. </p><h1><a name="References"></a>References<a href="https://code.google.com/p/word2vec/#References" class="section_anchor"></a></h1><blockquote><tt>[1]</tt> Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean. <a href="http://arxiv.org/pdf/1301.3781.pdf" rel="nofollow">Efficient Estimation of Word Representations in Vector Space</a>. In Proceedings of Workshop at ICLR, 2013. 
+</blockquote><blockquote><tt>[2]</tt> Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg Corrado, and Jeffrey Dean. <a href="http://arxiv.org/pdf/1310.4546.pdf" rel="nofollow">Distributed Representations of Words and Phrases and their Compositionality</a>. In Proceedings of NIPS, 2013. 
+</blockquote><blockquote><tt>[3]</tt> Tomas Mikolov, Wen-tau Yih, and Geoffrey Zweig.  <a href="http://research.microsoft.com/pubs/189726/rvecs.pdf" rel="nofollow">Linguistic Regularities in Continuous Space Word Representations</a>. In Proceedings of NAACL HLT, 2013. 
+</blockquote><h1><a name="Other_useful_links"></a>Other useful links<a href="https://code.google.com/p/word2vec/#Other_useful_links" class="section_anchor"></a></h1><p>Feel free to send us a link to your project or research paper related to word2vec that you think will be useful or interesting for the others. </p><blockquote>Tomas Mikolov, Quoc V. Le and Ilya Sutskever. <a href="http://arxiv.org/pdf/1309.4168" rel="nofollow">Exploiting Similarities among Languages for Machine Translation</a>. <i>We show how the word vectors can be applied to machine translation.</i> 
+</blockquote><blockquote>Word2vec in Python by Radim Rehurek in <a href="http://radimrehurek.com/2013/09/deep-learning-with-word2vec-and-gensim/" rel="nofollow">gensim</a> (plus <a href="http://radimrehurek.com/2014/02/word2vec-tutorial/" rel="nofollow">tutorial</a> and <a href="http://radimrehurek.com/2014/02/word2vec-tutorial/#app" rel="nofollow">demo</a> that uses the above model trained on Google News). 
+</blockquote><blockquote>Word2vec in Java as part of the <a href="http://deeplearning4j.org/word2vec.html" rel="nofollow">deeplearning4j</a> project. 
+</blockquote><blockquote>Word2vec implementation in <a href="https://spark.apache.org/docs/latest/mllib-feature-extraction.html#word2vec" rel="nofollow">Spark MLlib</a>. 
+</blockquote><blockquote>Comparison with traditional count-based vectors and cbow model trained on a different corpus by <a href="http://clic.cimec.unitn.it/composes/semantic-vectors.html" rel="nofollow">CIMEC UNITN</a>. 
+</blockquote><blockquote>Link to slides about word vectors from NIPS 2013 Deep Learning Workshop: <a href="https://drive.google.com/file/d/0B7XkCwpI5KDYRWRnd1RzWXQ2TWc/edit?usp=sharing" rel="nofollow">NNforText.pdf</a> 
+</blockquote><h1><a name="Disclaimer"></a>Disclaimer<a href="https://code.google.com/p/word2vec/#Disclaimer" class="section_anchor"></a></h1><p>This open source project is NOT a Google product, and is released for research purposes only. </p>
+ </td>
+ </tr>
+</tbody></table>
+<script src="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/prettify_core_compiled.js"></script>
+<script type="text/javascript">
+ prettyPrint();
+</script>
+
+ 
+ 
+ 
+ <script type="text/javascript" src="./word2vec - Tool for computing continuous distributed representations of words. - Google Project Hosting_files/ph_core.js"></script>
+ 
+ 
+ 
+ 
+</div> 
+
+<div id="footer" dir="ltr">
+ <div class="text">
+ <a href="https://code.google.com/projecthosting/terms.html">Terms</a> -
+ <a href="http://www.google.com/privacy.html">Privacy</a> -
+ <a href="https://code.google.com/p/support/">Project Hosting Help</a>
+ </div>
+</div>
+ <div class="hostedBy" style="margin-top: -20px;">
+ <span style="vertical-align: top;">Powered by <a href="http://code.google.com/projecthosting/">Google Project Hosting</a></span>
+ </div>
+
+ 
+ 
+
+
+ 
+ 
+
+
+<div class="menuDiv instance0" id="menuDiv-projects-dropdown" style="display: none;"><div class="menuCategory default"></div><div class="menuCategory controls"><hr class="menuSeparator"><a class="menuItem" href="https://code.google.com/hosting/" style="display: block;">Find open source projects...</a><a class="menuItem" href="https://code.google.com/hosting/createProject" style="display: block;">Create a project...</a></div></div><div class="menuDiv instance1" id="menuDiv-multilogin-dropdown" style="display: none;"><div class="menuCategory default"><span class="menuText" style="display: block;"><b>tpsatish95@gmail.com</b></span></div><div class="menuCategory controls"><hr class="menuSeparator"><a class="menuItem" href="http://www.google.com/accounts/AddSession?service=code&continue=https%3A%2F%2Fcode.google.com%2Fp%2Fword2vec%2F" style="display: block;"><nobr>Sign in with another account...</nobr></a></div></div></body></html>
